@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#245c50">
+  <title>두근두근 자리바꾸기 · 24명 6모둠</title>
+  <style>
+    :root{--paper:#f7f8f2;--ink:#213e36;--muted:#586d64;--green:#245c50;--line:#d8e1d8}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;line-height:1.6}button,select{font:inherit}button,a,select{touch-action:manipulation}button{cursor:pointer}button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #9b461d;outline-offset:4px}button:disabled{cursor:default;opacity:.5}a{color:var(--green)}
+    .wrap{max-width:1140px;padding:0 32px;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-bottom:1px solid var(--line);font-size:13px}.back{text-decoration:none;font-weight:700}.tag{letter-spacing:.1em;font-size:11px;font-weight:800;color:var(--muted)}
+    header{padding:42px 0 30px}.eyebrow{color:var(--green);font-size:12px;font-weight:800;letter-spacing:.15em}h1{font-size:clamp(30px,4vw,44px);line-height:1.3;letter-spacing:-.05em;margin:10px 0 12px}header p{margin:0;color:var(--muted)}.chips{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap}.chip{font-size:12px;padding:4px 12px;border:1px solid var(--line);border-radius:30px;background:white}
+    .layout{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:26px;align-items:start}.classroom{background:white;border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 8px 30px #213e3606}.front{text-align:center;margin-bottom:26px}.front span{font-size:11px;color:var(--muted);letter-spacing:.15em}.board{background:var(--green);color:#fff;border-radius:8px;max-width:250px;padding:8px;margin:6px auto;font-size:14px;font-weight:700;letter-spacing:.25em}.groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px 16px}.group{--tint:#edf2e5;--edge:#c6d5b3;background:var(--tint);border:1px solid var(--edge);padding:12px;border-radius:14px}.group:nth-child(2){--tint:#f9edde;--edge:#e6cfaf}.group:nth-child(3){--tint:#e8f2f6;--edge:#bed5df}.group:nth-child(4){--tint:#f3ecf7;--edge:#d8c9e1}.group:nth-child(5){--tint:#f8eaea;--edge:#e6caca}.group:nth-child(6){--tint:#e7f3ee;--edge:#bcd9ca}.group h2{font-size:12px;font-weight:750;margin:0 0 9px}.seats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.seat{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;min-height:75px;background:#fff;color:var(--ink);border:1px solid #c3d0c8;border-bottom:4px solid #c3d0c8;border-radius:9px;transition:transform .15s,border-color .15s}.seat:hover{transform:translateY(-2px);border-color:var(--green)}.seat strong{font-size:27px;line-height:1.2;font-variant-numeric:tabular-nums}.seat small{font-size:10px;color:var(--muted);margin-top:5px}.seat[aria-pressed="true"]{background:#245c50;color:white;border-color:#163f35}.seat[aria-pressed="true"] small{color:#fff}.legend{font-size:12px;color:var(--muted);text-align:center;margin:23px 0 0}
+    aside{display:flex;flex-direction:column;gap:16px}.panel{border:1px solid var(--line);border-radius:18px;background:white;padding:22px}.panel h2{font-size:17px;margin:0 0 8px}.panel p{font-size:13px;color:var(--muted);margin:0 0 18px}.action{width:100%;padding:13px 10px;border:1px solid var(--green);border-radius:10px;background:var(--green);color:#fff;font-weight:750}.action:hover{background:#17483b}.secondary{display:block;width:100%;margin-top:10px;padding:10px;border:1px solid var(--line);border-radius:10px;background:white;color:var(--ink);font-size:13px}.secondary:hover{background:#f0f5ef}.summary{display:flex;justify-content:space-between;font-size:12px;padding-bottom:15px;margin-bottom:16px;border-bottom:1px solid var(--line)}.summary strong{color:var(--green)}.status{margin-top:15px!important;margin-bottom:0!important;min-height:42px;color:var(--green)!important}.help{background:#edf2e8}.help ol{padding-left:20px;margin:0;font-size:13px;color:#405c4d}.help li+li{margin-top:9px}.assignment{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}label{display:block;font-size:12px;margin-bottom:6px}select{width:100%;padding:8px;border:1px solid #b9c9be;border-radius:8px;background:white;color:var(--ink)}.assignment p{font-size:11px;margin:8px 0 0}.privacy{font-size:12px;color:var(--muted);margin:22px 0 30px}footer{border-top:1px solid var(--line);padding:20px 0 30px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:12px}
+    @media(max-width:850px){.layout{grid-template-columns:minmax(0,1fr)}aside{display:grid;grid-template-columns:1fr 1fr}.classroom{padding:22px}.groups{gap:22px 14px}}
+    @media(max-width:480px){.wrap{padding:0 14px}.top{padding:17px 0}.tag{font-size:9px}header{padding:27px 0 24px}header p{font-size:14px}.classroom{padding:18px 10px;border-radius:16px}.groups{gap:20px 7px}.group{padding:8px 5px;border-radius:10px}.seats{gap:5px}.seat{min-height:68px;border-radius:7px}.seat strong{font-size:23px}.seat small{font-size:9px}.group h2{font-size:11px}.legend{font-size:11px}aside{grid-template-columns:1fr}.panel{padding:20px}footer{flex-direction:column}.board{max-width:180px}}
+    .seat.rolling{opacity:1;background:#fff8e5;border-color:#b58a35;overflow:hidden}.seat.rolling strong{animation:reel .12s linear infinite}.seat.rolling small{color:#72551f}.seat.settled{animation:land .32s ease-out;border-color:var(--green)}.classroom.drawing .seat:disabled{opacity:1;cursor:wait}.classroom.drawing .seat:hover{transform:none}.classroom.drawing .board{background:#70521e}
+    @keyframes reel{from{transform:translateY(-8px);filter:blur(1px)}to{transform:translateY(8px);filter:blur(1px)}}
+    @keyframes land{0%{transform:scale(.92)}60%{transform:scale(1.06)}100%{transform:scale(1)}}
+    @media(prefers-reduced-motion:reduce){.seat{transition:none}.seat.rolling strong,.seat.settled{animation:none}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top"><a class="back" href="../../">← 전시관으로</a><span class="tag">LINKDAY · CLASSROOM TOOLS</span></div>
+    <header>
+      <span class="eyebrow">새로운 자리, 새로운 하루</span>
+      <h1>두근두근 자리바꾸기</h1>
+      <p>어느 모둠에서 만나게 될까요? 번호를 섞어 새로운 자리를 정해 보세요.</p>
+      <div class="chips"><span class="chip">24개 가상 번호</span><span class="chip">가로 6칸 × 세로 4줄</span><span class="chip">4명씩 6모둠</span></div>
+    </header>
+    <main class="layout">
+      <section class="classroom" aria-label="교실 자리 배치도">
+        <div class="front"><span>교실 앞쪽</span><div class="board">칠판 · 교탁</div></div>
+        <div class="groups" id="groups"></div>
+        <p class="legend">자리를 누르면 고정 · 한 번 더 누르면 해제<br>진한 초록색과 ‘고정’ 표시가 있는 자리는 그대로 유지돼요.</p>
+      </section>
+      <aside aria-label="자리 배정 도구">
+        <section class="panel">
+          <h2>우리 반 자리 정하기</h2>
+          <p>고정한 번호는 남겨 두고 나머지 번호가 룰렛처럼 돌아가요. 하나씩 멈추면 새 자리 완성!</p>
+          <div class="summary"><span>고정한 자리 <strong id="locked-count">0개</strong></span><span>뽑기 <strong id="round">0회</strong></span></div>
+          <button class="action" id="shuffle" type="button">↻ 자리 뽑기</button>
+          <button class="secondary" id="unlock" type="button" disabled>고정 모두 해제</button>
+          <button class="secondary" id="reset" type="button">처음 배치로 초기화</button>
+          <p class="status" id="status" role="status" aria-live="polite">준비됐어요. 자리 뽑기를 눌러 시작하세요.</p>
+          <div class="assignment">
+            <label for="number">특정 번호를 원하는 자리에 놓기</label>
+            <select id="number"><option value="">번호를 선택하세요</option></select>
+            <p>번호 선택 → 놓을 자리 누르기. 두 번호의 자리를 바꾸고 선택한 번호를 고정해요. 이미 고정된 자리는 먼저 해제해 주세요.</p>
+          </div>
+        </section>
+        <section class="panel help"><h2>이렇게 사용해요</h2><ol><li>필요한 자리를 먼저 고정해요. 특정 번호를 옮길 때는 번호 선택을 이용하세요.</li><li>자리 뽑기를 눌러 나머지 자리를 정해요.</li><li>다시 뽑아도 고정한 자리는 유지돼요.</li></ol></section>
+      </aside>
+    </main>
+    <p class="privacy">이 프로그램은 1~24번 가상 번호만 사용해요. 배치는 저장하거나 외부로 전송하지 않으며, 새로고침하면 처음 배치로 돌아가요.</p>
+    <footer><span>3色 링크데이 · 선생님의 작은 아이디어</span><span>서로 다른 자리에서 함께 자라요.</span></footer>
+  </div>
+  <noscript>자리바꾸기를 사용하려면 브라우저의 JavaScript를 켜 주세요.</noscript>
+  <script>
+    'use strict';
+    const initial = Array.from({length: 24}, (_, i) => i + 1);
+    let arrangement = [...initial];
+    const locked = new Set();
+    let round = 0;
+    let drawing = false;
+    const seats = [];
+    const numberSelect = document.getElementById('number');
+    const status = document.getElementById('status');
+    const shuffleButton = document.getElementById('shuffle');
+    const classroom = document.querySelector('.classroom');
+    const groups = document.getElementById('groups');
+    for (const number of initial) {
+      const option = document.createElement('option');
+      option.value = String(number);
+      option.textContent = `${number}번`;
+      numberSelect.append(option);
+    }
+    for (let group = 0; group < 6; group++) {
+      const section = document.createElement('section');
+      section.className = 'group';
+      const heading = document.createElement('h2');
+      heading.id = `group-${group}`;
+      heading.textContent = `${group + 1}모둠`;
+      section.setAttribute('aria-labelledby', heading.id);
+      const grid = document.createElement('div');
+      grid.className = 'seats';
+      for (let local = 0; local < 4; local++) {
+        const index = (Math.floor(group / 3) * 2 + Math.floor(local / 2)) * 6 + (group % 3) * 2 + local % 2;
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'seat';
+        button.dataset.index = String(index);
+        button.append(document.createElement('strong'), document.createElement('small'));
+        button.addEventListener('click', () => selectSeat(index));
+        seats[index] = button;
+        grid.append(button);
+      }
+      section.append(heading, grid);
+      document.getElementById('groups').append(section);
+    }
+    function render() {
+      seats.forEach((seat, index) => {
+        const fixed = locked.has(index);
+        seat.querySelector('strong').textContent = arrangement[index];
+        seat.querySelector('small').textContent = fixed ? '고정 ✓' : '번호';
+        seat.setAttribute('aria-pressed', String(fixed));
+        seat.disabled = drawing;
+        seat.setAttribute('aria-label', `${Math.floor(index / 6) + 1}줄 ${index % 6 + 1}칸, ${arrangement[index]}번, ${fixed ? '고정됨, 누르면 해제' : '고정 안 됨'}`);
+      });
+      document.getElementById('locked-count').textContent = `${locked.size}개`;
+      document.getElementById('round').textContent = `${round}회`;
+      document.getElementById('unlock').disabled = drawing || locked.size === 0;
+      document.getElementById('reset').disabled = drawing;
+      numberSelect.disabled = drawing;
+      shuffleButton.disabled = drawing || locked.size >= 23;
+      shuffleButton.textContent = drawing ? '두근두근… 추첨 중' : round ? '↻ 다시 뽑기' : '↻ 자리 뽑기';
+    }
+    function selectSeat(index) {
+      if (drawing) return;
+      const selectedNumber = Number(numberSelect.value);
+      if (selectedNumber) {
+        const source = arrangement.indexOf(selectedNumber);
+        if (locked.has(index) || locked.has(source)) {
+          status.textContent = '옮기려는 번호나 도착 자리가 고정되어 있어요. 번호 선택을 취소하고 해당 자리의 고정을 먼저 해제해 주세요.';
+          return;
+        }
+        [arrangement[index], arrangement[source]] = [arrangement[source], arrangement[index]];
+        locked.add(index);
+        numberSelect.value = '';
+        status.textContent = `${selectedNumber}번을 선택한 자리에 놓고 고정했어요.`;
+      } else {
+        if (locked.has(index)) locked.delete(index);
+        else locked.add(index);
+        status.textContent = `${arrangement[index]}번 자리의 고정을 ${locked.has(index) ? '설정' : '해제'}했어요.`;
+      }
+      if (locked.size >= 23) status.textContent += ' 바꿀 수 있는 자리가 2개 미만이에요. 다시 뽑으려면 고정을 더 해제해 주세요.';
+      render();
+    }
+    shuffleButton.addEventListener('click', () => {
+      if (drawing || locked.size >= 23) return;
+      const free = initial.map((_, i) => i).filter(i => !locked.has(i));
+      const numbers = free.map(i => arrangement[i]);
+      for (let i = numbers.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+      }
+      drawing = true;
+      numberSelect.value = '';
+      seats.forEach(seat => seat.classList.remove('settled'));
+      classroom.classList.add('drawing');
+      groups.setAttribute('aria-busy', 'true');
+      status.textContent = '두근두근! 번호가 돌아가고 있어요. 잠시 후 하나씩 멈춰요.';
+      render();
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const started = performance.now();
+      const stopped = new Set();
+      const nextTick = new Map();
+      free.forEach(index => {
+        seats[index].classList.add('rolling');
+        seats[index].querySelector('small').textContent = '추첨 중';
+      });
+      function animate(now) {
+        const elapsed = now - started;
+        free.forEach((index, order) => {
+          if (stopped.has(index)) return;
+          // The last seats wait longer; each reel slows before revealing its result.
+          const end = reducedMotion ? 600 : 2000 + 2800 * Math.pow(order / (free.length - 1), 1.6);
+          const seat = seats[index];
+          if (elapsed >= end) {
+            arrangement[index] = numbers[order];
+            seat.querySelector('strong').textContent = numbers[order];
+            seat.querySelector('small').textContent = '확정 ✓';
+            seat.classList.remove('rolling');
+            seat.classList.add('settled');
+            stopped.add(index);
+          } else if (!reducedMotion && elapsed >= (nextTick.get(index) || 0)) {
+            seat.querySelector('strong').textContent = numbers[Math.floor(Math.random() * numbers.length)];
+            const interval = 55 + 210 * Math.pow(elapsed / end, 3);
+            seat.querySelector('strong').style.animationDuration = `${interval}ms`;
+            nextTick.set(index, elapsed + interval);
+          }
+        });
+        if (stopped.size < free.length) {
+          requestAnimationFrame(animate);
+          return;
+        }
+        drawing = false;
+        round++;
+        classroom.classList.remove('drawing');
+        groups.setAttribute('aria-busy', 'false');
+        status.textContent = `${round}번째 자리 배정 완료! ${locked.size}개 고정 자리는 유지했어요.`;
+        render();
+        free.forEach(index => { seats[index].querySelector('small').textContent = '확정 ✓'; });
+      }
+      requestAnimationFrame(animate);
+    });
+    document.getElementById('unlock').addEventListener('click', () => {
+      if (drawing) return;
+      locked.clear();
+      numberSelect.value = '';
+      status.textContent = '모든 자리의 고정을 해제했어요. 현재 배치는 그대로예요.';
+      render();
+    });
+    document.getElementById('reset').addEventListener('click', () => {
+      if (drawing) return;
+      seats.forEach(seat => seat.classList.remove('settled'));
+      arrangement = [...initial];
+      locked.clear();
+      round = 0;
+      numberSelect.value = '';
+      status.textContent = '처음 배치로 돌아왔어요. 고정과 뽑기 횟수도 초기화했어요.';
+      render();
+    });
+    render();
+  </script>
+</body>
+</html>
