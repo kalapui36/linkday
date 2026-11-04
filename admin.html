@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src https://api.github.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'">
+  <title>작품 관리 · 3色 링크데이</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#faf8f3;color:#233c35;font-family:"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;line-height:1.65;word-break:keep-all}.wrap{width:min(880px,calc(100% - 36px));margin:0 auto}header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #dddeda;padding:24px 0;gap:16px}a{color:#266552}h1{font-size:32px;letter-spacing:-.04em;margin-bottom:8px}h2{font-size:21px;margin:0 0 12px}p{margin:8px 0 20px;color:#607069}main{padding:30px 0 60px}.panel{background:white;border:1px solid #dddeda;border-radius:14px;padding:28px;margin:22px 0}label{display:block;font-size:14px;font-weight:700;margin:12px 0 6px}input,button{font:inherit}input{width:100%;padding:12px;border:1px solid #adbfb4;border-radius:8px;background:#fff;color:#233c35}button{border:1px solid #266552;background:#266552;color:white;border-radius:8px;padding:10px 18px;font-weight:700;cursor:pointer}button:disabled{opacity:.55;cursor:wait}input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #b34e36;outline-offset:4px}.row{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:17px}.quiet{background:transparent;color:#266552}.delete{background:#b74734;border-color:#b74734;white-space:nowrap}.work{display:flex;justify-content:space-between;align-items:center;gap:20px;border:1px solid #dddeda;background:white;border-radius:12px;padding:20px;margin:14px 0}.work h3{font-size:18px;margin:0 0 4px;overflow-wrap:anywhere}.work p{font-size:14px;margin:0;overflow-wrap:anywhere}.tag{font-size:12px;color:#266552;font-weight:800}.small{font-size:13px}.status{white-space:pre-line;padding:16px 18px;background:#edf2e9;border-radius:9px;margin:20px 0}.status:empty{display:none}.error{background:#fbe7df;color:#823424}details{margin-top:18px}summary{cursor:pointer;color:#266552}code{background:#f0f2ed;padding:1px 5px;border-radius:4px}footer{font-size:12px;color:#607069;border-top:1px solid #dddeda;padding-top:20px}[hidden]{display:none!important}@media(max-width:480px){.panel{padding:21px}.work{align-items:flex-start;flex-direction:column}.work button{width:100%}h1{font-size:28px}}
+  </style>
+  <script src="./admin.js" defer></script>
+</head>
+<body>
+  <div class="wrap">
+    <header><strong>3色 링크데이 · 작품 관리</strong><a href="./">전시관으로</a></header>
+    <main>
+      <h1>작품을 정리하는 곳</h1>
+      <p>작품을 삭제하면 해당 번호로 다시 시작할 수 있어요.</p>
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+      <section id="lock-panel" class="panel" aria-labelledby="lock-heading">
+        <h2 id="lock-heading">관리자 입장</h2>
+        <form id="lock-form"><label for="password">비밀번호</label><input id="password" type="password" inputmode="numeric" autocomplete="off" required><div class="actions"><button type="submit">입장</button></div></form>
+      </section>
+      <section id="connect-panel" class="panel" aria-labelledby="connect-heading" hidden>
+        <h2 id="connect-heading">GitHub 연결</h2>
+        <p>작품 삭제를 위해 이 저장소에 쓸 수 있는 GitHub 토큰을 연결해 주세요. 토큰은 이 페이지를 닫거나 새로고침하면 사라집니다.</p>
+        <form id="connect-form"><label for="token">GitHub 쓰기 토큰</label><input id="token" type="password" autocomplete="off" spellcheck="false" autocapitalize="none" required><div class="actions"><button type="submit">GitHub 연결</button></div></form>
+        <details><summary>처음 연결하나요?</summary><p class="small"><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">GitHub에서 토큰 만들기</a> → 소유자 <code>kalapui36</code> → 저장소 <code>linkday</code>만 선택 → Contents 권한을 <strong>Read and write</strong>로 설정하세요. 생성한 값은 위 입력란에만 붙여 넣으세요.</p><p class="small">비밀번호는 관리 화면 잠금용이며, 실제 GitHub 변경 권한은 토큰으로 확인합니다.</p></details>
+      </section>
+      <section id="manage-panel" aria-labelledby="manage-heading" hidden>
+        <div class="row"><h2 id="manage-heading">등록된 작품</h2><div class="actions"><button id="refresh" class="quiet" type="button">새로고침</button><button id="logout" class="quiet" type="button">로그아웃</button></div></div>
+        <p class="small">삭제를 누르면 작품 폴더와 전시 목록에서 바로 제거됩니다. Pages 배포 후 전시관에 반영됩니다.</p>
+        <div id="work-list"></div>
+      </section>
+    </main>
+    <footer>삭제 후 새 Codex 작업에서 같은 번호를 입력하면 새 작품을 만들 수 있습니다.</footer>
+  </div>
+</body>
+</html>
