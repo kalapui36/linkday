@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#164c47">
+<title>수도 탐험대 · 세계 나라 퀴즈</title>
+<style>
+:root{--ink:#173f3b;--muted:#536c67;--green:#17675b;--paper:#f5f4ec;--line:#d5ded4;--gold:#f4c862}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,"Malgun Gothic",sans-serif;line-height:1.6}button,select{font:inherit}button{cursor:pointer}button:disabled{cursor:default}button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #a64d18;outline-offset:4px}a{color:inherit}.wrap{max-width:900px;margin:auto;padding:0 24px}nav{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);font-size:13px}nav a{text-decoration:none;font-weight:700}.brand{letter-spacing:.12em;font-size:11px}header{padding:38px 0 26px}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.15em;color:var(--green)}h1{font-size:clamp(32px,7vw,52px);line-height:1.2;letter-spacing:-.05em;margin:12px 0}header p{color:var(--muted);margin:0}.shell{background:white;border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 12px 40px #173f3b08}.ribbon{padding:16px 26px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px}.ribbon span:last-child{color:var(--gold)}.panel{padding:30px}.intro{display:grid;grid-template-columns:1fr 160px;gap:24px;align-items:center}.globe{width:150px;height:150px;border:1px solid #bad3c9;border-radius:50%;background:#e4f1eb;display:grid;place-items:center;font-size:76px;box-shadow:10px 10px 0 #f8e9c8}.intro h2{margin:0 0 12px;font-size:25px}.muted{color:var(--muted)}.rules{padding-left:22px;color:var(--muted);font-size:15px}.settings{margin:24px 0}label{display:block;font-size:14px;font-weight:700;margin-bottom:8px}select{width:100%;padding:12px;border:1px solid #aabfb5;border-radius:10px;background:white;color:var(--ink)}.primary,.secondary{padding:13px 22px;border-radius:12px;font-weight:750;border:1px solid var(--green);min-height:48px}.primary{background:var(--green);color:white}.primary:hover{background:#105046}.secondary{background:white;color:var(--green)}.wide{width:100%}.meta{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted);margin-bottom:12px}progress{width:100%;height:8px;border:0;appearance:none;display:block;margin:0 0 28px;border-radius:8px;overflow:hidden;background:#edf1eb}progress::-webkit-progress-bar{background:#edf1eb}progress::-webkit-progress-value{background:var(--green)}progress::-moz-progress-bar{background:var(--green)}.region{display:inline-block;background:#eef3eb;padding:4px 12px;border-radius:20px;color:var(--green);font-size:12px;font-weight:700}.question{font-size:clamp(24px,5vw,34px);line-height:1.45;letter-spacing:-.04em;margin:16px 0 24px}.question strong{color:var(--green)}.choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}.choice{text-align:left;border:1px solid var(--line);border-radius:13px;background:white;color:var(--ink);padding:17px;display:flex;gap:12px;align-items:center;font-weight:700;min-height:66px}.choice .key{display:grid;place-items:center;background:#f0f3ed;border-radius:7px;min-width:28px;height:28px;font-size:12px}.choice:hover:not(:disabled){border-color:var(--green);background:#f2f8f4}.choice.correct{background:#eaf5ef;border:2px solid #20724d}.choice.wrong{background:#fff0e9;border:2px solid #b7522c}.choice:disabled{color:var(--ink)}.feedback{background:#f3f6ef;border-left:4px solid var(--green);padding:18px;margin:22px 0;border-radius:0 12px 12px 0}.feedback h3{margin:0 0 7px;font-size:18px}.feedback p{margin:0}.note{font-size:12px;color:var(--muted);margin:16px 0 0}.result{text-align:center}.result h2{font-size:28px;margin:12px 0}.score{font-size:64px;line-height:1.2;font-weight:850;color:var(--green);margin:18px 0}.score small{font-size:20px}.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:24px 0}.review{text-align:left;border-top:1px solid var(--line);padding-top:22px}.review h3{font-size:18px}.review ul{padding:0;list-style:none}.review li{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:10px 0}.review li span{display:block;font-size:13px;color:var(--muted)}footer{padding:24px 0 32px;color:var(--muted);font-size:12px}[hidden]{display:none!important}@media(max-width:560px){.wrap{padding:0 16px}header{padding-top:28px}.panel{padding:22px 18px}.ribbon{padding:14px 18px}.intro{grid-template-columns:1fr}.globe{display:none}.choices{grid-template-columns:1fr}.choice{padding:13px;min-height:58px}.brand{font-size:10px}.actions>*{width:100%}}@media(prefers-reduced-motion:no-preference){.choice{transition:background .15s,border-color .15s}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a href="../../">← 전시관으로</a><span class="brand">LINKDAY · WORLD EXPLORER</span></nav>
+<header><span class="eyebrow">초등 6학년 · 세계 지리</span><h1>수도 탐험대 🌏</h1><p>나라를 만나고, 수도를 찾아 떠나는 작은 세계 여행</p></header>
+<main class="shell">
+<div class="ribbon"><span>002 · 나라와 수도 퀴즈</span><span>생각하고, 고르고, 배워요</span></div>
+<section class="panel" id="intro" aria-labelledby="intro-title">
+ <div class="intro"><div><h2 id="intro-title">오늘은 어디로 떠나 볼까요?</h2><p class="muted">나라 이름을 보고 알맞은 수도를 골라 보세요.<br>낯선 수도도 해설과 함께 익힐 수 있어요.</p></div><div class="globe" aria-hidden="true">🌍</div></div>
+ <ul class="rules"><li>매번 새롭게 뽑은 10문제를 풀어요.</li><li>한 문제당 10점! 시간 제한은 없어요.</li><li>틀린 문제는 마지막에 다시 도전할 수 있어요.</li></ul>
+ <div class="settings"><label for="level">탐험 코스</label><select id="level"><option value="basic">첫걸음 · 익숙한 나라부터</option><option value="world">세계 여행 · 여러 대륙을 골고루</option></select></div>
+ <button class="primary wide" id="start">탐험 시작하기 →</button><p class="note">마우스·터치 또는 Tab과 Enter로 풀 수 있어요. 이름이나 로그인은 필요 없어요.</p>
+</section>
+<section class="panel" id="quiz" hidden aria-labelledby="question">
+ <div class="meta"><span id="position"></span><span id="points"></span></div><progress id="progress" max="10" value="0" aria-label="완료한 문제 수"></progress>
+ <span class="region" id="region"></span><h2 class="question" id="question" tabindex="-1"></h2>
+ <div class="choices" id="choices" role="group" aria-labelledby="question"></div>
+ <div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+ <button class="primary wide" id="next" hidden>다음 나라로 →</button>
+ <p class="note">정답을 고르면 해설이 나와요. 읽은 뒤 다음 문제로 이동하세요.</p>
+</section>
+<section class="panel result" id="result" hidden aria-labelledby="result-title">
+ <span class="eyebrow">EXPLORATION COMPLETE</span><h2 id="result-title" tabindex="-1">탐험을 마쳤어요!</h2><div class="score" id="score"></div><p id="summary" class="muted"></p>
+ <div class="actions"><button class="primary" id="retry">틀린 문제 다시 풀기</button><button class="secondary" id="restart">새 탐험 준비하기</button></div>
+ <div class="review" id="review"></div>
+</section>
+</main><footer>1회 10문제 · 개인 정보 수집 없음 · 기록은 새로고침하면 사라져요.</footer>
+<noscript>퀴즈를 풀려면 브라우저의 JavaScript를 켜 주세요.</noscript>
+</div>
+<script>
+'use strict';
+// 나라, 수도, 지역, 해설, 첫걸음 코스 포함 여부
+const countries = [
+ ['대한민국','서울','아시아','서울은 한강이 흐르는 대한민국의 수도예요.',1],
+ ['일본','도쿄','아시아','도쿄는 일본의 수도예요. 일본의 대표적인 큰 도시인 오사카와 구별해요.',1],
+ ['중국','베이징','아시아','중국의 수도는 베이징이에요. 상하이는 큰 경제 도시예요.',1],
+ ['몽골','울란바토르','아시아','울란바토르는 몽골의 수도로, 넓은 초원으로 알려진 나라의 중심 도시예요.',0],
+ ['베트남','하노이','아시아','베트남의 수도는 북쪽에 있는 하노이예요. 호찌민은 남쪽의 큰 도시예요.',1],
+ ['태국','방콕','아시아','방콕은 태국의 수도예요. 짜오프라야강이 도시를 지나가요.',1],
+ ['인도','뉴델리','아시아','인도의 수도는 뉴델리예요. 뭄바이는 인도의 큰 항구 도시예요.',1],
+ ['싱가포르','싱가포르','아시아','싱가포르는 도시 국가여서 나라 이름과 수도 이름이 같아요.',0],
+ ['프랑스','파리','유럽','파리는 프랑스의 수도예요. 에펠탑과 루브르 박물관이 있어요.',1],
+ ['영국','런던','유럽','런던은 영국의 수도예요. 템스강이 흐르고 영국 의회가 있어요.',1],
+ ['독일','베를린','유럽','베를린은 독일의 수도예요. 과거 도시를 나누었던 베를린 장벽으로도 알려져 있어요.',0],
+ ['이탈리아','로마','유럽','로마는 이탈리아의 수도예요. 고대 로마의 유적인 콜로세움이 있어요.',1],
+ ['스페인','마드리드','유럽','스페인의 수도는 마드리드예요. 바르셀로나와는 다른 도시예요.',0],
+ ['그리스','아테네','유럽','아테네는 그리스의 수도예요. 고대 그리스의 유적이 남아 있어요.',0],
+ ['미국','워싱턴 D.C.','북아메리카','미국의 수도는 워싱턴 D.C.예요. 뉴욕이 아니에요. 백악관과 연방 의회가 있어요.',1],
+ ['캐나다','오타와','북아메리카','캐나다의 수도는 오타와예요. 토론토나 밴쿠버와 헷갈리지 않도록 해요.',0],
+ ['멕시코','멕시코시티','북아메리카','멕시코시티는 멕시코의 수도예요. 나라 이름과 수도 이름이 비슷해요.',0],
+ ['브라질','브라질리아','남아메리카','브라질의 수도는 브라질리아예요. 리우데자네이루는 과거의 수도예요.',1],
+ ['아르헨티나','부에노스아이레스','남아메리카','부에노스아이레스는 아르헨티나의 수도예요. 아르헨티나는 남아메리카 남쪽에 있어요.',0],
+ ['페루','리마','남아메리카','리마는 페루의 수도예요. 태평양과 가까운 해안에 있어요.',0],
+ ['이집트','카이로','아프리카','카이로는 이집트의 수도예요. 나일강이 흐르고 가까이에 기자의 피라미드가 있어요.',1],
+ ['케냐','나이로비','아프리카','나이로비는 아프리카 동부에 있는 케냐의 수도예요.',0],
+ ['호주','캔버라','오세아니아','호주의 수도는 캔버라예요. 시드니나 멜버른이 아니라는 점을 기억해요.',1],
+ ['뉴질랜드','웰링턴','오세아니아','뉴질랜드의 수도는 웰링턴이에요. 오클랜드는 뉴질랜드의 큰 도시예요.',0]
+].map(([country,capital,region,fact,basic])=>({country,capital,region,fact,basic}));
+const $=id=>document.getElementById(id);
+const shuffle=items=>{const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+let questions=[], index=0, correct=0, mistakes=[], answered=false;
+function show(id){for(const name of ['intro','quiz','result'])$(name).hidden=name!==id;}
+function begin(pool){questions=[...pool];index=0;correct=0;mistakes=[];show('quiz');render();}
+function render(){
+ answered=false;const q=questions[index];
+ $('position').textContent=`문제 ${index+1} / ${questions.length}`;
+ $('points').textContent=`${correct*10}점`;
+ $('progress').max=questions.length;$('progress').value=index;
+ $('region').textContent=q.region;
+ $('question').textContent=`${q.country}의 수도는 어디일까요?`;
+ $('feedback').hidden=true;$('next').hidden=true;
+ $('next').textContent=index===questions.length-1?'탐험 결과 보기 →':'다음 나라로 →';
+ const others=shuffle(countries.filter(c=>c.capital!==q.capital)).slice(0,3).map(c=>c.capital);
+ const options=shuffle([q.capital,...others]);
+ $('choices').replaceChildren(...options.map((city,i)=>{
+  const b=document.createElement('button');b.className='choice';b.type='button';
+  const key=document.createElement('span');key.className='key';key.textContent=i+1;key.setAttribute('aria-hidden','true');
+  const text=document.createElement('span');text.textContent=city;b.append(key,text);
+  b.addEventListener('click',()=>answer(city,b));return b;
+ }));
+ $('question').focus();
+}
+function answer(city,button){
+ if(answered)return;answered=true;const q=questions[index], ok=city===q.capital;
+ if(ok)correct++;else mistakes.push({...q,selected:city});
+ for(const b of $('choices').children){
+  if(b.lastChild.textContent===q.capital){b.classList.add('correct');b.lastChild.textContent+=' · 정답';}
+  b.disabled=true;
+ }
+ if(!ok){button.classList.add('wrong');button.lastChild.textContent+=' · 내가 고른 답';}
+ const heading=document.createElement('h3');heading.textContent=ok?'정답이에요! +10점':'괜찮아요, 하나 더 배웠어요!';
+ const p=document.createElement('p');p.textContent=q.fact;
+ $('feedback').replaceChildren(heading,p);$('feedback').hidden=false;
+ $('points').textContent=`${correct*10}점`;$('progress').value=index+1;
+ $('next').hidden=false;$('next').focus();
+}
+function finish(){
+ show('result');$('score').replaceChildren(document.createTextNode(correct*10+' '));
+ const small=document.createElement('small');small.textContent=`/ ${questions.length*10}점`;$('score').append(small);
+ $('summary').textContent=`${questions.length}문제 중 ${correct}문제 정답! `+(mistakes.length?'틀린 나라를 한 번 더 만나 볼까요?':'모든 수도를 찾았어요. 멋진 탐험이었어요!');
+ $('retry').hidden=mistakes.length===0;
+ const heading=document.createElement('h3');heading.textContent=mistakes.length?'다시 기억할 나라와 수도':'오늘 만난 나라와 수도';
+ const list=document.createElement('ul');
+ for(const q of (mistakes.length?mistakes:questions)){
+  const li=document.createElement('li');const strong=document.createElement('strong');strong.textContent=`${q.country} → ${q.capital}`;
+  const detail=document.createElement('span');detail.textContent=q.selected?`내가 고른 답: ${q.selected} · ${q.fact}`:q.fact;li.append(strong,detail);list.append(li);
+ }
+ $('review').replaceChildren(heading,list);$('result-title').focus();
+}
+$('start').addEventListener('click',()=>{
+ const pool=countries.filter(c=>$('level').value==='world'||c.basic);
+ // 세계 여행은 여섯 지역을 각각 포함하고 나머지 네 문제를 무작위로 뽑아요.
+ if($('level').value==='world'){
+  const chosen=[...new Set(pool.map(c=>c.region))].map(r=>shuffle(pool.filter(c=>c.region===r))[0]);
+  begin(shuffle([...chosen,...shuffle(pool.filter(c=>!chosen.includes(c))).slice(0,4)]));
+ }else begin(shuffle(pool).slice(0,10));
+});
+$('next').addEventListener('click',()=>{if(!answered)return;index++;if(index<questions.length)render();else finish();});
+$('retry').addEventListener('click',()=>begin(shuffle(mistakes)));
+$('restart').addEventListener('click',()=>{show('intro');$('start').focus();});
+</script>
+</body>
+</html>
