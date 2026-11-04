@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>소리 탐험대 · 003</title>
+<style>
+:root{color-scheme:light;--ink:#193e41;--muted:#526b6a;--paper:#fcfaf3;--green:#176f62;--orange:#ed8555;--line:#dbe5dc}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif}button,input{font:inherit}button,a,input{touch-action:manipulation}button{cursor:pointer}button:disabled{cursor:wait;opacity:.65}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #bd522b;outline-offset:5px}main{max-width:1080px;margin:auto;padding:24px 24px 48px}.top{display:flex;justify-content:space-between;align-items:center;font-size:14px}.top a{color:var(--green);text-decoration:none;font-weight:700}.badge{border:1px solid var(--line);border-radius:30px;padding:7px 12px;font-size:12px;letter-spacing:1px}header{text-align:center;margin:42px 0 24px}.eyebrow{font-size:13px;color:var(--green);font-weight:800;letter-spacing:3px}h1{font-size:clamp(36px,6vw,58px);letter-spacing:-3px;margin:8px 0 12px}header p{color:var(--muted);line-height:1.8;margin:0}.controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:24px 0 12px}button{border:1px solid var(--line);background:white;border-radius:14px;padding:13px 20px;font-weight:750;color:var(--ink)}.primary{background:var(--green);color:#fff;border-color:var(--green)}.active{background:#fff0db;border-color:#c5893c}.status{text-align:center;color:var(--muted);font-size:14px;min-height:40px;line-height:1.6;margin:10px auto 24px;max-width:720px}.panels{display:grid;grid-template-columns:1fr 1fr;gap:20px}.panel{background:#fff;border:1px solid var(--line);border-radius:26px;padding:26px;overflow:hidden}.label{display:flex;justify-content:space-between;align-items:center}.label h2{margin:0;font-size:21px}.step{color:var(--green);font-size:12px;font-weight:800;background:#edf5ef;border-radius:8px;padding:6px 9px}.reading{font-size:34px;font-weight:850;letter-spacing:-1px;margin:25px 0 4px}.sub{font-size:14px;color:var(--muted);margin:0;min-height:23px}.volume-scene{height:185px;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:20px;background:#f5f8ed;border-radius:18px}.wave{width:14px;height:20px;background:var(--green);border-radius:12px;transition:height .12s}.wave:nth-child(2n){background:#81b39c}.scale{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:12px}.meter{height:12px;border-radius:10px;background:#e7eee9;margin-top:18px;overflow:hidden}.fill{height:100%;width:0;background:var(--green);transition:width .12s}.pitch-scene{position:relative;height:185px;margin-top:20px;background:linear-gradient(#e8f3fc,#f1f7f0);border-radius:18px;overflow:hidden}.pitch-scene:before{content:"";position:absolute;width:180px;height:180px;background:#c9dfd0;transform:rotate(45deg);left:-25px;bottom:-140px;border-radius:20px}.pitch-scene:after{content:"";position:absolute;width:220px;height:220px;background:#d8e8dc;transform:rotate(45deg);right:-45px;bottom:-170px;border-radius:20px}.guide-line{position:absolute;left:18px;right:18px;border-top:1px dashed #aec5c4}.guide-line:nth-child(1){top:30px}.guide-line:nth-child(2){top:92px}.guide-line:nth-child(3){bottom:30px}.bird{position:absolute;left:calc(50% - 34px);bottom:60px;width:68px;height:52px;z-index:1;transition:bottom .18s;filter:drop-shadow(0 5px 3px #245a4520)}.bird.waiting{opacity:.4}.pitch-caption{position:absolute;right:12px;bottom:10px;font-size:11px;color:var(--muted);z-index:2}.demo{background:#fff4df;border:1px solid #ead9b7;border-radius:20px;padding:20px 24px;margin:20px 0}.demo h2{font-size:17px;margin:0 0 6px}.demo p{font-size:14px;line-height:1.6;margin:0;color:var(--muted)}.sliders{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:16px}.sliders label{display:block;font-size:14px;font-weight:700}input[type=range]{display:block;width:100%;margin:16px 0;accent-color:var(--green);min-height:24px}.slider-ends{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}[hidden]{display:none!important}.missions{margin-top:30px}.missions h2{font-size:19px;margin-bottom:14px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{border-top:2px solid var(--line);padding:16px 5px;font-size:14px;line-height:1.8}.card b{display:block;font-size:16px}.card span{color:var(--muted)}.note{margin-top:22px;padding:18px 20px;background:#eef2e9;border-radius:16px;font-size:13px;line-height:1.9;color:#425c57}.note p{margin:0}details{margin-top:10px}summary{cursor:pointer;font-weight:700}footer{margin-top:28px;text-align:center;font-size:12px;color:var(--muted)}@media(max-width:650px){main{padding:18px 16px 32px}header{margin-top:32px}.panels{grid-template-columns:1fr;gap:14px}.panel{padding:22px}.reading{margin-top:18px}.cards{grid-template-columns:1fr;gap:0}.card{padding:13px 4px}.sliders{grid-template-columns:1fr;gap:16px}.badge{font-size:10px}.volume-scene,.pitch-scene{height:160px}h1{letter-spacing:-2px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body><main>
+<nav class="top"><a href="../../">← 전시관으로</a><span class="badge">003 · SOUND EXPLORERS</span></nav>
+<header><span class="eyebrow">귀로 듣고, 눈으로 발견해요</span><h1>소리 탐험대</h1><p>얼마나 <b>큰 소리</b>일까? 얼마나 <b>높은 소리</b>일까?<br>목소리를 내며 두 가지를 따로 살펴봐요.</p></header>
+<div class="controls"><button id="start" class="primary" type="button">🎤 마이크로 탐험하기</button><button id="practice" type="button">✨ 연습 모드</button><button id="stop" type="button" hidden>탐험 멈추기</button></div>
+<p id="status" class="status" role="status" aria-live="polite">마이크 버튼을 누르고 사용을 허용해 주세요.<br>마이크가 없으면 연습 모드로 먼저 놀아 봐요!</p>
+<section id="demo" class="demo" hidden aria-label="연습 모드 조절">
+<h2>✨ 연습 모드 · 진짜 소리를 측정하는 중이 아니에요</h2><p>소리는 재생되지 않아요. 막대를 움직이며 세기와 높낮이가 어떻게 다른지 살펴봐요.</p>
+<div class="sliders"><div><label for="demoVolume">소리의 세기</label><input id="demoVolume" type="range" min="0" max="100" value="45"><div class="slider-ends"><span>작게</span><span>크게</span></div></div><div><label for="demoPitch">소리의 높낮이</label><input id="demoPitch" type="range" min="80" max="1200" value="300"><div class="slider-ends"><span>낮게</span><span>높게</span></div></div></div>
+</section>
+<div class="panels">
+<section class="panel" aria-labelledby="volume-title"><div class="label"><h2 id="volume-title">소리의 세기</h2><span class="step">얼마나 클까?</span></div><p class="reading" id="volumeText">준비됐나요?</p><p class="sub" id="volumeHint">소리가 커지면 막대가 길어져요.</p><div class="volume-scene" aria-hidden="true"><i class="wave"></i><i class="wave"></i><i class="wave"></i><i class="wave"></i><i class="wave"></i><i class="wave"></i><i class="wave"></i><i class="wave"></i><i class="wave"></i></div><div class="meter" role="meter" aria-label="소리의 상대적인 세기" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="volumeMeter"><div class="fill" id="volumeFill"></div></div><div class="scale"><span>작은 소리</span><span>큰 소리</span></div></section>
+<section class="panel" aria-labelledby="pitch-title"><div class="label"><h2 id="pitch-title">소리의 높낮이</h2><span class="step">얼마나 높을까?</span></div><p class="reading" id="pitchText">소리를 기다려요</p><p class="sub" id="pitchHint">‘아—’ 하고 한 음을 길게 내 봐요.</p><div class="pitch-scene" aria-hidden="true"><i class="guide-line"></i><i class="guide-line"></i><i class="guide-line"></i><svg class="bird waiting" id="bird" viewBox="0 0 80 64"><path d="M15 39 2 28l3 25 18-5" fill="#c96536"/><ellipse cx="39" cy="37" rx="27" ry="23" fill="#efa263"/><circle cx="57" cy="23" r="18" fill="#efa263"/><path d="m72 23 8 6-10 4" fill="#c96536"/><path d="M23 33q27-6 23 19-22 2-23-19" fill="#ffdc9e"/><circle cx="62" cy="20" r="3" fill="#193e41"/><path d="m38 57-2 6m13-7 1 7" stroke="#945330" stroke-width="3"/></svg><span class="pitch-caption">音 · 소리의 높낮이</span></div><div class="scale"><span>↓ 낮은 소리</span><span>높은 소리 ↑</span></div></section>
+</div>
+<section class="missions"><h2>오늘의 탐험 미션</h2><div class="cards"><div class="card"><b>01 · 작게, 그리고 크게</b><span>같은 ‘아—’ 소리를 작게, 보통으로 내 봐요. 세기 막대가 달라지나요?</span></div><div class="card"><b>02 · 곰처럼, 새처럼</b><span>낮은 ‘우—’, 높은 ‘이—’ 소리를 내 봐요. 새가 어디로 움직이나요?</span></div><div class="card"><b>03 · 두 가지는 달라요</b><span>연습 모드에서 세기만 바꿔 봐요. 큰 소리가 꼭 높은 소리일까요?</span></div></div></section>
+<aside class="note"><p><b>탐험 약속</b> · 마이크에서 한 뼘쯤 떨어져 편안한 목소리로 말해요. 큰 소리를 지르거나 마이크를 두드리지 않아요.</p><p>소리는 이 기기 안에서만 분석해요. 녹음하거나 저장·전송하지 않아요.</p><details><summary>선생님과 함께 읽어요</summary><p>세기는 마이크에 들어온 신호를 0~100으로 바꾼 비교용 값이며, 소음계의 데시벨(dB SPL)이 아닙니다. 기기·거리·자동 음량 조절에 따라 달라져요. 같은 기기와 거리에서 비교해 주세요.</p><p>높낮이는 한 음이 이어질 때 약 80~1,200Hz 범위에서 추정해요. 말소리·여러 사람의 소리·잡음에서는 값이 흔들리거나 표시되지 않을 수 있어요. 낮음·중간·높음은 이 앱의 비교 구간입니다.</p><p id="numbers">측정값: 아직 없어요.</p></details></aside>
+<footer>소리의 세기와 높낮이는 서로 다른 특징이에요. · 3色 링크데이</footer>
+</main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+let mode='idle', stream=null, context=null, analyser=null, frame=0, generation=0, lastTime=0, smoothVolume=0, lastPitch=0;
+const waves=[...document.querySelectorAll('.wave')];
+function show(volume,pitch){
+ const v=Math.round(volume);
+ $('volumeText').textContent=v<8?'아주 조용해요':v<38?'작은 소리':v<72?'보통 소리':'큰 소리';
+ $('volumeHint').textContent=mode==='demo'?'연습 중 · 막대로 세기를 바꿔 봐요.':'같은 거리에서 소리의 세기를 비교해요.';
+ $('volumeFill').style.width=v+'%'; $('volumeMeter').setAttribute('aria-valuenow',v);
+ waves.forEach((w,i)=>{w.style.height=(12+volume*.95*(1-Math.abs(i-4)*.13))+'px';});
+ $('bird').classList.toggle('waiting',!pitch);
+ if(pitch){
+  $('pitchText').textContent=pitch<220?'낮은 소리':pitch<500?'중간 소리':'높은 소리';
+  $('pitchHint').textContent=mode==='demo'?'연습 중 · 높은 소리일수록 새가 올라가요.':'한 음을 길게 내며 새의 움직임을 봐요.';
+  const ratio=Math.max(0,Math.min(1,Math.log(pitch/80)/Math.log(1200/80)));
+  $('bird').style.bottom=(12+ratio*95)+'px';
+ }else{
+  $('pitchText').textContent='소리를 기다려요';
+  $('pitchHint').textContent='조용한 곳에서 혼자 ‘아—’ 해 봐요.';
+ }
+ $('numbers').textContent=`${mode==='demo'?'연습값':'측정값'}: 상대 세기 ${v}/100 · 높낮이 ${pitch?Math.round(pitch)+'Hz (추정)':'찾는 중'}`;
+}
+function release(){
+ cancelAnimationFrame(frame); frame=0;
+ if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}
+ if(context){context.close().catch(()=>{});context=null;}
+ analyser=null; smoothVolume=0;lastPitch=0;
+}
+function stop(message='탐험을 멈췄어요. 마이크도 꺼졌어요.'){
+ generation++;release();mode='idle';
+ $('demo').hidden=true;$('stop').hidden=true;$('practice').classList.remove('active');$('start').disabled=false;
+ $('start').textContent='🎤 마이크로 탐험하기';$('status').textContent=message;
+ show(0,null);$('volumeText').textContent='쉬는 중이에요';$('volumeHint').textContent='버튼을 눌러 다시 탐험해요.';$('numbers').textContent='측정값: 아직 없어요.';
+}
+// YIN: compare repeating wave periods, then refine the first reliable minimum.
+function findPitch(samples,sampleRate){
+ const max=Math.min(600,Math.floor(sampleRate/80)),min=Math.floor(sampleRate/1200),size=Math.min(1024,samples.length-max-1);
+ if(size<64)return null;
+ const diff=new Float32Array(max+1);let sum=0;
+ for(let lag=1;lag<=max;lag++){
+  let d=0;for(let i=0;i<size;i++){const delta=samples[i]-samples[i+lag];d+=delta*delta;}
+  sum+=d;diff[lag]=sum?d*lag/sum:1;
+ }
+ for(let lag=Math.max(2,min);lag<max-1;lag++){
+  if(diff[lag]<.15){
+   while(lag<max-1&&diff[lag+1]<diff[lag])lag++;
+   const a=diff[lag-1],b=diff[lag],c=diff[lag+1],den=a-2*b+c;
+   const refined=lag+(den?(a-c)/(2*den):0),hz=sampleRate/refined;
+   return hz>=80&&hz<=1200?hz:null;
+  }
+ }
+ return null;
+}
+function tick(time){
+ if(mode!=='mic'||!analyser)return;
+ frame=requestAnimationFrame(tick);if(time-lastTime<85)return;lastTime=time;
+ const raw=new Float32Array(analyser.fftSize);analyser.getFloatTimeDomainData(raw);
+ let square=0;for(const v of raw)square+=v*v;const rms=Math.sqrt(square/raw.length);
+ const level=Math.max(0,Math.min(100,(20*Math.log10(Math.max(rms,1e-7))+60)/60*100));
+ smoothVolume=.35*level+.65*smoothVolume;
+ // Downsample to keep pitch analysis light enough for classroom devices.
+ const step=Math.max(1,Math.floor(context.sampleRate/22050)),samples=new Float32Array(Math.floor(raw.length/step));
+ for(let i=0;i<samples.length;i++)samples[i]=raw[i*step];
+ const pitch=rms>.008?findPitch(samples,context.sampleRate/step):null;
+ lastPitch=pitch?(lastPitch&&Math.abs(Math.log2(pitch/lastPitch))<.15?lastPitch*.55+pitch*.45:pitch):0;
+ show(smoothVolume,lastPitch||null);
+}
+$('start').addEventListener('click',async()=>{
+ stop('마이크 사용 허용을 기다리고 있어요…');const token=generation;mode='pending';$('start').disabled=true;$('stop').hidden=false;
+ try{
+  if(!window.isSecureContext)throw new Error('insecure');
+  if(!navigator.mediaDevices?.getUserMedia)throw new Error('unsupported');
+  const Audio=window.AudioContext||window.webkitAudioContext;if(!Audio)throw new Error('unsupported');
+  context=new Audio();await context.resume();
+  if(token!==generation)return;
+  const acquired=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false},video:false});
+  if(token!==generation){acquired.getTracks().forEach(t=>t.stop());return;}
+  stream=acquired;analyser=context.createAnalyser();analyser.fftSize=4096;
+  context.createMediaStreamSource(stream).connect(analyser);
+  // Do not connect the microphone to speakers: no playback or feedback.
+  mode='mic';$('start').disabled=false;$('start').textContent='🎤 마이크 다시 연결';
+  $('status').textContent='🟢 마이크로 탐험 중 · 편안하게 ‘아—’ 하고 소리를 내 봐요.';
+  stream.getAudioTracks().forEach(track=>track.addEventListener('ended',()=>{if(mode==='mic')stop('마이크 연결이 끊겼어요. 다시 연결하거나 연습 모드를 이용해요.');}));
+  lastTime=0;frame=requestAnimationFrame(tick);
+ }catch(error){
+  if(token!==generation)return;
+  const message=error.message==='insecure'?'마이크는 HTTPS 주소에서 사용할 수 있어요. 지금은 연습 모드로 탐험해요.':error.message==='unsupported'?'이 브라우저에서 마이크를 사용할 수 없어요. 연습 모드를 이용해 주세요.':error.name==='NotAllowedError'?'마이크가 허용되지 않았어요. 브라우저의 마이크 권한을 확인하거나 연습 모드를 이용해요.':error.name==='NotFoundError'?'연결된 마이크가 없어요. 연습 모드로 먼저 탐험해요.':'마이크에 연결하지 못했어요. 다른 앱에서 사용 중인지 확인하거나 연습 모드를 이용해요.';
+  stop(message);
+ }
+});
+function demo(){show(Number($('demoVolume').value),Number($('demoPitch').value));}
+$('practice').addEventListener('click',()=>{stop();mode='demo';$('demo').hidden=false;$('stop').hidden=false;$('practice').classList.add('active');$('status').textContent='🟠 연습 모드 · 마이크는 꺼져 있어요. 두 막대를 하나씩 움직여 봐요.';demo();});
+$('demoVolume').addEventListener('input',demo);$('demoPitch').addEventListener('input',demo);
+$('stop').addEventListener('click',()=>stop());
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&mode!=='idle')stop('잠시 쉬어요. 다시 버튼을 누르면 탐험을 이어갈 수 있어요.');});
+window.addEventListener('pagehide',()=>{generation++;release();});
+</script></body></html>
