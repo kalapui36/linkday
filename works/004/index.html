@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>두근두근 발표 순서 · 004</title>
+<style>
+:root{color-scheme:light;--ink:#253d38;--green:#286653;--paper:#faf8f1;--line:#dddeda}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,"Malgun Gothic",sans-serif;line-height:1.6}main{width:min(760px,calc(100% - 32px));margin:32px auto}a{color:var(--green)}header{display:flex;justify-content:space-between;gap:16px;font-size:14px}.tag{color:#68786f}h1{font-size:clamp(30px,6vw,44px);letter-spacing:-.05em;margin:32px 0 8px}.intro{color:#64726b;margin:0 0 28px}.panel{background:white;border:1px solid var(--line);border-radius:20px;padding:clamp(20px,5vw,36px)}form{display:flex;align-items:end;gap:12px;flex-wrap:wrap}label{font-weight:700;display:block}input{display:block;width:130px;padding:11px;border:1px solid #a8b6ad;border-radius:10px;margin-top:6px;font:inherit}button{font:inherit;font-weight:700;border:1px solid var(--green);border-radius:10px;padding:12px 18px;background:var(--green);color:white;cursor:pointer}button.secondary{background:white;color:var(--green)}button:disabled{opacity:.45;cursor:default}button:focus-visible,input:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #bd522e;outline-offset:4px}.hint{font-size:13px;color:#64726b;margin:10px 0 0}.draw{text-align:center;padding:32px 0 24px}.badge{display:inline-block;background:#f8e8b7;color:#65501e;border-radius:30px;padding:4px 14px;font-size:13px;font-weight:700}#current{font-size:clamp(64px,14vw,100px);line-height:1.3;font-weight:850;color:var(--green);margin:16px 0 4px;font-variant-numeric:tabular-nums}#progress{color:#64726b;margin:0 0 22px}.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}#status{min-height:26px;margin:20px 0 0;text-align:center;color:#685128}.section-title{font-size:17px;margin:24px 0 10px}.history,.order{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px}.history li,.order li{border:1px solid var(--line);border-radius:10px;padding:9px 12px;background:#f6f7f2}.history small,.order small{display:block;color:#68786f;font-size:11px}.order li.revealed{background:#e8f1e9;border-color:#b4cdbb}summary{cursor:pointer;font-weight:700;padding:12px 0}details{border-top:1px solid var(--line);margin-top:24px}.empty{color:#718077;font-size:14px}footer{text-align:center;font-size:12px;color:#718077;margin:24px 0}[hidden]{display:none!important}@media(prefers-reduced-motion:no-preference){.pop{animation:pop .25s ease-out}@keyframes pop{from{transform:scale(.85);opacity:.4}to{transform:scale(1);opacity:1}}}
+</style>
+</head>
+<body>
+<main>
+<header><a href="../../">← 전시관으로</a><span class="tag">004 · CLASSROOM TOOLS</span></header>
+<h1>두근두근 발표 순서 🎤</h1>
+<p class="intro">번호만으로 간단하게! 오늘의 발표 순서를 뽑아 보세요.</p>
+<section class="panel" aria-label="발표 순서 뽑기">
+<form id="setup">
+<div><label for="count">참여 인원</label><input id="count" type="number" min="1" max="100" step="1" value="24" required aria-describedby="hint"></div>
+<button type="submit" id="shuffle">순서 섞기</button>
+</form>
+<p class="hint" id="hint">1~100명 · 1번부터 참여 인원까지 중복 없이 뽑아요. 인원을 바꾸면 다시 섞어 주세요.</p>
+<div class="draw">
+<span class="badge">이번 발표자는?</span>
+<div id="current" aria-live="polite" aria-atomic="true">준비!</div>
+<p id="progress">인원을 확인하고 순서를 섞어 주세요.</p>
+<div class="actions"><button id="next" type="button" disabled>한 명 뽑기</button><button id="reset" class="secondary" type="button" disabled>처음부터 보기</button></div>
+</div>
+<p id="status" role="status"></p>
+<h2 class="section-title">지금까지 뽑은 순서</h2>
+<p class="empty" id="empty">아직 뽑은 번호가 없어요.</p>
+<ol class="history" id="history" aria-label="공개한 발표 순서"></ol>
+<details id="all"><summary>전체 발표 순서 확인</summary><p class="empty" id="all-empty">먼저 순서를 섞어 주세요.</p><ol class="order" id="order" aria-label="전체 발표 순서"></ol></details>
+</section>
+<footer>이름 입력 없이 번호로만 참여해요. 새로고침하면 순서는 초기화돼요.</footer>
+</main>
+<script>
+(()=>{
+ 'use strict';
+ const $=id=>document.getElementById(id);
+ let order=[],shown=0;
+ function randomBelow(limit){
+  const buffer=new Uint32Array(1);
+  const ceiling=4294967296-(4294967296%limit);
+  do{crypto.getRandomValues(buffer);}while(buffer[0]>=ceiling);
+  return buffer[0]%limit;
+ }
+ function item(number,index){
+  const li=document.createElement('li');
+  const rank=document.createElement('small');rank.textContent=`${index+1}번째`;
+  const value=document.createElement('strong');value.textContent=`${number}번`;
+  li.append(rank,value);return li;
+ }
+ function render(){
+  $('current').textContent=shown?`${order[shown-1]}번`:'준비!';
+  $('progress').textContent=order.length?`${shown} / ${order.length}명 공개 · ${order.length-shown}명 남았어요`:'인원을 확인하고 순서를 섞어 주세요.';
+  $('next').disabled=!order.length||shown===order.length;
+  $('next').textContent=shown===order.length&&order.length?'모두 뽑았어요':shown?'다음 발표자 뽑기':'한 명 뽑기';
+  $('reset').disabled=!shown;
+  $('empty').hidden=shown>0;
+  $('all-empty').hidden=order.length>0;
+  $('history').replaceChildren(...order.slice(0,shown).map(item));
+  $('order').replaceChildren(...order.map((number,index)=>{const li=item(number,index);li.classList.toggle('revealed',index<shown);return li;}));
+ }
+ $('setup').addEventListener('submit',event=>{
+  event.preventDefault();
+  if(!$('setup').reportValidity())return;
+  const count=$('count').valueAsNumber;
+  if(!Number.isInteger(count)||count<1||count>100)return;
+  order=Array.from({length:count},(_,i)=>i+1);
+  for(let i=order.length-1;i>0;i--){const j=randomBelow(i+1);[order[i],order[j]]=[order[j],order[i]];}
+  shown=0;$('all').open=false;render();
+  $('status').textContent=`${count}명의 순서를 새로 섞었어요. 한 명씩 뽑아 보세요!`;
+ });
+ $('next').addEventListener('click',()=>{
+  if(shown>=order.length)return;
+  shown++;render();
+  $('current').classList.remove('pop');void $('current').offsetWidth;$('current').classList.add('pop');
+  $('status').textContent=shown===order.length?'모든 발표 순서를 공개했어요. 모두에게 박수! 👏':`${shown}번째 발표자는 ${order[shown-1]}번이에요.`;
+ });
+ $('reset').addEventListener('click',()=>{shown=0;$('all').open=false;render();$('status').textContent='같은 순서로 처음부터 볼게요. 새 순서는 순서 섞기를 눌러 주세요.';});
+ render();
+})();
+</script>
+</body>
+</html>
