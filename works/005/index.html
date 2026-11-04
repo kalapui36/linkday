@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>다섯 음표 작곡실 · 005</title>
+<style>
+:root{font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:#243a3a;background:#f7f5ed;line-height:1.6}*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:default;opacity:.45}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #214f79;outline-offset:4px}main{max-width:1000px;margin:auto;padding:26px 24px 48px}.top{display:flex;justify-content:space-between;align-items:center;font-size:13px}.top a{color:#3c6861}.badge{letter-spacing:.12em;color:#637c74}header{padding:38px 0 24px}h1{font-size:clamp(30px,6vw,48px);letter-spacing:-.06em;margin:6px 0}h1 span{color:#377b70}p{margin:8px 0;color:#5e716c}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:#377b70}.panel{background:white;border:1px solid #dde3d9;border-radius:20px;padding:26px;margin:18px 0;box-shadow:0 5px 22px #263c3206}.panel-head{display:flex;gap:12px;align-items:center;justify-content:space-between}h2{font-size:19px;margin:0}.count{font-size:13px;color:#6c7c76}.keys{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:22px 0 16px}.key{border:0;border-bottom:5px solid #0002;border-radius:16px;padding:25px 4px 18px;color:#243a3a;background:var(--note);transition:transform .12s}.key:hover{transform:translateY(-3px)}.key:active{transform:translateY(2px)}.key strong{font-size:32px;display:block}.key small{font-size:12px}.settings{display:flex;gap:20px;align-items:center;flex-wrap:wrap}.settings label{font-size:14px;display:flex;gap:10px;align-items:center}select{border:1px solid #ccd6cf;border-radius:8px;padding:7px;background:#fff;color:inherit}input[type=range]{width:120px;accent-color:#377b70}.hint{font-size:12px}.score{min-height:180px;margin:22px 0;background:repeating-linear-gradient(to bottom,transparent 0,transparent 31px,#e1e8e1 31px,#e1e8e1 32px);border-radius:12px;padding:14px;display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start}.empty{width:100%;text-align:center;padding:32px 0;color:#70847b}.note{position:relative;min-width:60px;border:2px solid transparent;background:var(--note);color:#243a3a;border-radius:12px;padding:7px 12px;align-self:flex-start}.note strong{display:block;font-size:21px}.note small{font-size:11px}.note.active{border-color:#214e45;box-shadow:0 0 0 4px #377b7025;transform:translateY(-3px)}.note:hover::after{content:'×';position:absolute;right:3px;top:-3px;font-size:15px}.controls{display:flex;flex-wrap:wrap;gap:10px}.controls button{border:1px solid #d1dbd2;border-radius:10px;background:#f5f7f2;color:#304c43;padding:10px 17px;font-weight:700}.controls .primary{background:#377b70;color:white;border-color:#377b70}#status{min-height:26px;font-size:14px;margin-top:16px}.footer{font-size:12px;color:#74837b;text-align:center;padding-top:12px}@media(max-width:540px){main{padding:20px 16px}.panel{padding:18px}.keys{gap:7px}.key{padding:20px 0 14px}.key strong{font-size:27px}.badge{font-size:10px}.settings{gap:12px}.controls button{flex:1;padding:10px}.note{min-width:52px;padding:7px 9px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.staff-wrap{margin:20px 0;background:#fffdf7;border:1px solid #e5e6dc;border-radius:14px;padding:12px}.staff-wrap h3{font-size:15px;margin:0 0 8px;color:#47746a}.staff-system{display:block;width:100%;height:auto}.staff-event .music-ink{fill:#30483f;stroke:#30483f}.staff-event.active .music-ink{fill:#bc4d29;stroke:#bc4d29}.staff-event .note-halo{fill:transparent}.staff-event.active .note-halo{fill:#f8dfab}.staff-empty{font-size:14px;fill:#738078}
+</style>
+</head>
+<body><main>
+<div class="top"><a href="../../">← 전시관으로</a><span class="badge">LINKDAY · 005</span></div>
+<header><div class="eyebrow">MY LITTLE MELODY</div><h1>다섯 음표 <span>작곡실</span></h1><p>도, 레, 미, 파, 솔. 다섯 가지 소리로 나만의 곡을 만들어요.</p></header>
+<section class="panel" aria-labelledby="keyboard-title">
+<h2 id="keyboard-title">1. 음표를 눌러 멜로디를 만들어요</h2>
+<div class="keys" id="keys"></div>
+<div class="controls" style="margin-bottom:16px"><button id="rest" aria-label="4분 쉼표 추가, 키보드 0">𝄽 4분 쉼표 넣기 · 한 박</button></div>
+<div class="settings"><label for="instrument">악기 <select id="instrument"><option value="piano">피아노</option><option value="recorder">리코더</option><option value="violin">바이올린</option></select></label><label for="duration">음 길이 <select id="duration"><option value="0.5">반 박 ♪</option><option value="1" selected>한 박 ♩</option><option value="2">두 박 𝅗𝅥</option></select></label><label for="tempo">빠르기 <input id="tempo" type="range" min="60" max="180" step="5" value="100"><output id="tempo-value" for="tempo">100 BPM</output></label></div>
+<p class="hint">악기를 바꾸면 멜로디 전체를 선택한 음색으로 들어요. 실제 악기 특징을 살린 전자 음색이에요.</p>
+<p class="hint">키보드 1~5로 음표, 0으로 4분 쉼표를 넣어요. 쉼표는 음 길이 선택과 관계없이 한 박 쉬어요. 고른 음 길이는 다음 음표부터 적용돼요.</p>
+</section>
+<section class="panel" aria-labelledby="score-title"><div class="panel-head"><h2 id="score-title">2. 나의 멜로디</h2><span class="count" id="count">0 / 64음</span></div>
+<div class="staff-wrap"><h3>나의 오선 악보</h3><div id="staff" role="img" aria-label="음표를 넣으면 오선 악보가 나타나요"></div><p class="hint">높은음자리표 · 아래 도부터 솔까지 · ♪ 반 박 / ♩ 한 박 / 𝅗𝅥 두 박 · 𝄽 한 박 쉼</p></div>
+<div class="score" id="score" aria-label="작곡한 음표"></div>
+<p class="hint">멜로디 속 음표를 누르면 그 음표가 지워져요. 최대 64음까지 만들 수 있어요.</p>
+<div class="controls"><button class="primary" id="play" disabled>▶ 재생</button><button id="stop" disabled>■ 정지</button><button id="undo" disabled>↶ 마지막 음 지우기</button><button id="clear" disabled>전체 지우기</button></div>
+<p id="status" role="status" aria-live="polite">첫 음표를 눌러 시작해 볼까요?</p></section>
+<div class="footer">소리는 기기의 음량을 켜고 들어 주세요. 멜로디는 이 화면에서만 유지되며 새로고침하면 사라져요.</div>
+</main><script>
+'use strict';
+const tones=[{name:'도',hz:261.63,color:'#f5b7a6'},{name:'레',hz:293.66,color:'#f4d781'},{name:'미',hz:329.63,color:'#bbd9ab'},{name:'파',hz:349.23,color:'#abd4da'},{name:'솔',hz:392,color:'#c9bce4'}];
+const $=id=>document.getElementById(id);
+let melody=[],audio=null,playing=false,run=0,timers=[],voices=new Set();
+function message(text){$('status').textContent=text;}
+async function readyAudio(){const Audio=window.AudioContext||window.webkitAudioContext;if(!Audio)throw new Error('이 브라우저는 소리 재생을 지원하지 않아요. 다른 브라우저로 열어 주세요.');if(!audio)audio=new Audio();await audio.resume();}
+const instruments={
+ piano:{harmonics:[0,1,.45,.23,.12,.07,.035],volume:.3,attack:.008,decay:true},
+ recorder:{harmonics:[0,1,.09,.18,.025,.04],volume:.25,attack:.035},
+ violin:{harmonics:[0,1,.55,.38,.28,.2,.15,.1,.07],volume:.23,attack:.075,vibrato:true}
+};
+function sound(tone,seconds,when=audio.currentTime){
+ const instrument=instruments[$('instrument').value];
+ const osc=audio.createOscillator(),gain=audio.createGain();
+ const imaginary=new Float32Array(instrument.harmonics);
+ osc.setPeriodicWave(audio.createPeriodicWave(new Float32Array(imaginary.length),imaginary));
+ osc.frequency.value=tones[tone].hz;
+ const attack=Math.min(instrument.attack,seconds*.2);
+ gain.gain.setValueAtTime(0,when);
+ gain.gain.linearRampToValueAtTime(instrument.volume,when+attack);
+ if(instrument.decay){
+  gain.gain.exponentialRampToValueAtTime(instrument.volume*.3,when+seconds*.55);
+  gain.gain.exponentialRampToValueAtTime(.001,when+seconds);
+ }else{
+  gain.gain.setValueAtTime(instrument.volume*.9,when+seconds*.75);
+  gain.gain.linearRampToValueAtTime(0,when+seconds);
+ }
+ gain.gain.setValueAtTime(0,when+seconds+.005);
+ osc.connect(gain);gain.connect(audio.destination);
+ const sources=[osc],nodes=[osc,gain];
+ if(instrument.vibrato){
+  const vibrato=audio.createOscillator(),depth=audio.createGain();
+  vibrato.frequency.value=5.5;depth.gain.setValueAtTime(0,when);
+  depth.gain.linearRampToValueAtTime(9,when+Math.min(.18,seconds*.5));
+  vibrato.connect(depth);depth.connect(osc.detune);sources.push(vibrato);nodes.push(vibrato,depth);
+ }
+ let ended=0;
+ for(const source of sources){
+  voices.add(source);source.onended=()=>{voices.delete(source);if(++ended===sources.length)nodes.forEach(node=>node.disconnect());};
+  source.start(when);source.stop(when+seconds+.01);
+ }
+}
+const staffLayout=window.matchMedia('(max-width:540px)');
+function svgElement(tag,attributes={},text){
+ const element=document.createElementNS('http://www.w3.org/2000/svg',tag);
+ for(const [name,value] of Object.entries(attributes))element.setAttribute(name,String(value));
+ if(text!==undefined)element.textContent=text;
+ return element;
+}
+function renderStaff(){
+ const staff=$('staff');staff.replaceChildren();
+ staff.setAttribute('aria-label',melody.length?'높은음자리표 악보: '+melody.map(n=>n.tone===null?'4분 쉼표 한 박':`${tones[n.tone].name} ${n.beats}박`).join(', '):'음표를 넣으면 오선 악보가 나타나요');
+ const perLine=staffLayout.matches?4:8,width=staffLayout.matches?340:680;
+ const rows=Math.max(1,Math.ceil(melody.length/perLine));
+ for(let row=0;row<rows;row++){
+  const svg=svgElement('svg',{viewBox:`0 0 ${width} 136`,class:'staff-system','aria-hidden':'true'});
+  for(let line=0;line<5;line++)svg.append(svgElement('line',{x1:12,y1:40+12*line,x2:width-12,y2:40+12*line,stroke:'#9ba99d','stroke-width':1}));
+  svg.append(svgElement('text',{x:15,y:89,'font-size':66,fill:'#30483f','font-family':'Bravura, Noto Music, Apple Symbols, Segoe UI Symbol, serif'},'𝄞'));
+  if(!melody.length)svg.append(svgElement('text',{x:78,y:66,class:'staff-empty'},'음표를 눌러 곡을 만들어 보세요'));
+  melody.slice(row*perLine,(row+1)*perLine).forEach((note,column)=>{
+   const index=row*perLine+column,x=83+column*((width-100)/perLine);
+   const group=svgElement('g',{class:'staff-event','data-note-index':index});
+   group.append(svgElement('rect',{x:x-19,y:24,width:38,height:91,rx:12,class:'note-halo'}));
+   if(note.tone===null){
+    // Draw the quarter rest as a path so it does not depend on a music font.
+    group.append(svgElement('path',{d:`M ${x-4} 48 L ${x+5} 59 L ${x-2} 68 L ${x+6} 78 Q ${x-7} 73 ${x-4} 87 Q ${x-15} 77 ${x-6} 72 L ${x-11} 66 L ${x-3} 58 Z`,class:'music-ink','stroke-width':1,'stroke-linejoin':'round'}));
+   }else{
+    const y=100-note.tone*6;
+    if(note.tone===0)group.append(svgElement('line',{x1:x-13,y1:y,x2:x+13,y2:y,class:'music-ink','stroke-width':1.5}));
+    group.append(svgElement('ellipse',{cx:x,cy:y,rx:8,ry:5.5,transform:`rotate(-18 ${x} ${y})`,class:'music-ink','stroke-width':note.beats===2?2:1,style:note.beats===2?'fill:#fffdf7':''}));
+    group.append(svgElement('line',{x1:x+7,y1:y-1,x2:x+7,y2:y-35,class:'music-ink','stroke-width':1.8}));
+    if(note.beats===.5)group.append(svgElement('path',{d:`M ${x+7} ${y-35} Q ${x+25} ${y-23} ${x+13} ${y-12} Q ${x+20} ${y-25} ${x+7} ${y-28} Z`,class:'music-ink'}));
+   }
+   group.append(svgElement('text',{x,y:127,'text-anchor':'middle','font-size':12,fill:'#62766c'},`${index+1}`));
+   svg.append(group);
+  });
+  staff.append(svg);
+ }
+}
+staffLayout.addEventListener('change',renderStaff);
+function render(){
+ renderStaff();
+ $('score').replaceChildren();
+ if(!melody.length){const empty=document.createElement('div');empty.className='empty';empty.textContent='♪ 여기에 나만의 멜로디가 펼쳐져요';$('score').append(empty);}
+ melody.forEach((note,index)=>{const button=document.createElement('button');button.className='note';button.style.setProperty('--note',note.tone===null?'#e4e9e4':tones[note.tone].color);button.disabled=playing;button.setAttribute('aria-label',`${index+1}번째 ${note.tone===null?'4분 쉼표':tones[note.tone].name} ${note.beats}박, 누르면 삭제`);const name=document.createElement('strong');name.textContent=note.tone===null?'𝄽':tones[note.tone].name;const length=document.createElement('small');length.textContent=`${note.beats}박`;button.append(name,length);button.onclick=()=>{melody.splice(index,1);render();message('음표를 지웠어요.');};$('score').append(button);});
+ $('count').textContent=`${melody.length} / 64음`;
+ for(const id of ['play','undo','clear'])$(id).disabled=playing||!melody.length;
+ $('stop').disabled=!playing;$('tempo').disabled=playing;$('duration').disabled=playing;$('instrument').disabled=playing;
+ document.querySelectorAll('.key, #rest').forEach(key=>key.disabled=playing||melody.length>=64);
+}
+async function add(tone){if(playing||melody.length>=64)return;melody.push({tone,beats:tone===null?1:Number($('duration').value)});render();message(tone===null?'4분 쉼표를 넣었어요. 한 박 쉬어 가요.':`${tones[tone].name}를 넣었어요.`);if(tone===null)return;try{await readyAudio();if(!playing)sound(tone,.28);}catch(e){message(e.message);}}
+tones.forEach((tone,index)=>{const key=document.createElement('button');key.className='key';key.style.setProperty('--note',tone.color);key.setAttribute('aria-label',`${tone.name} 추가, 키보드 ${index+1}`);const name=document.createElement('strong');name.textContent=tone.name;const shortcut=document.createElement('small');shortcut.textContent=`${index+1}번 키`;key.append(name,shortcut);key.onclick=()=>add(index);$('keys').append(key);});
+function stop(announce=true){run++;timers.forEach(clearTimeout);timers=[];voices.forEach(voice=>{try{voice.stop();}catch{}});voices.clear();playing=false;render();if(announce)message('재생을 멈췄어요. 처음부터 다시 들을 수 있어요.');}
+$('play').onclick=async()=>{
+ if(playing||!melody.length)return;playing=true;const current=++run;render();message('소리를 준비하고 있어요…');
+ try{await readyAudio();if(current!==run)return;const beat=60/Number($('tempo').value),start=audio.currentTime+.08;let offset=0;
+ melody.forEach((note,index)=>{const duration=note.beats*beat;if(note.tone!==null)sound(note.tone,duration*.9,start+offset);timers.push(setTimeout(()=>{if(current!==run)return;document.querySelectorAll('.note').forEach((el,i)=>el.classList.toggle('active',i===index));document.querySelectorAll('.staff-event').forEach(el=>el.classList.toggle('active',Number(el.dataset.noteIndex)===index));message(`${index+1} / ${melody.length}음 · ${note.tone===null?'4분 쉼표':tones[note.tone].name}`);},(offset+.08)*1000));offset+=duration;});
+ timers.push(setTimeout(()=>{if(current!==run)return;playing=false;timers=[];render();message('멜로디 재생이 끝났어요! 다시 듣거나 음표를 바꿔 보세요.');},(offset+.1)*1000));
+ }catch(e){if(current===run){stop(false);message(e.message);}}
+};
+$('instrument').onchange=()=>{message(`${$('instrument').selectedOptions[0].textContent} 음색을 골랐어요. 음표를 누르거나 재생해 보세요.`);};
+$('rest').onclick=()=>add(null);
+$('stop').onclick=()=>stop();$('undo').onclick=()=>{melody.pop();render();message('마지막 음을 지웠어요.');};$('clear').onclick=()=>{melody=[];render();message('멜로디를 비웠어요. 새로운 곡을 만들어 보세요.');};
+$('tempo').oninput=()=>{$('tempo-value').textContent=`${$('tempo').value} BPM`;};
+document.addEventListener('keydown',event=>{if(event.repeat||event.ctrlKey||event.metaKey||event.altKey||['INPUT','SELECT','TEXTAREA'].includes(event.target.tagName))return;if(event.key==='0'){event.preventDefault();add(null);}else if(/^[1-5]$/.test(event.key)){event.preventDefault();add(Number(event.key)-1);}});
+window.addEventListener('pagehide',()=>stop(false));render();
+</script></body></html>
