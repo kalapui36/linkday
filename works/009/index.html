@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#253c70">
+<title>국기 탐험대 · 009</title>
+<style>
+:root{--ink:#233453;--blue:#304e91;--muted:#62718a;--line:#dbe2ee;--paper:#f3f6fc}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,"Malgun Gothic",sans-serif;line-height:1.6}main{max-width:820px;margin:auto;padding:20px 20px 48px}nav{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px}a{color:var(--blue)}header{margin:36px 0 24px}h1{font-size:clamp(32px,7vw,48px);letter-spacing:-.06em;line-height:1.25;margin:10px 0}h2{font-size:24px;line-height:1.4;margin-top:0}.eyebrow{color:var(--blue);font-weight:800;font-size:12px;letter-spacing:.12em}p{margin:10px 0}.muted{color:var(--muted)}.panel{border:1px solid var(--line);border-radius:24px;padding:clamp(20px,5vw,36px);background:white;box-shadow:0 12px 36px #23345308}.pills{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.pill{padding:5px 12px;border-radius:30px;background:#eef2fb;font-size:13px;color:var(--blue)}button,select{font:inherit}button{cursor:pointer;min-height:48px;border:1px solid var(--blue);border-radius:12px;padding:12px 18px;background:var(--blue);color:white;font-weight:750}button:hover:not(:disabled){filter:brightness(.94)}button:disabled{cursor:default}button.secondary{color:var(--blue);background:white}button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #ad4a12;outline-offset:4px}label{display:block;font-weight:700;margin:24px 0 8px}select{width:100%;padding:12px;border-radius:10px;border:1px solid #9baac0;background:white;color:var(--ink);margin-bottom:20px}.wide{width:100%}.meta{display:flex;justify-content:space-between;gap:12px;font-size:14px;font-weight:700}progress{display:block;width:100%;height:8px;margin:12px 0 24px;accent-color:var(--blue)}.flag-stage{background:#f3f6fc;border:1px solid var(--line);border-radius:16px;display:grid;place-items:center;min-height:200px;padding:28px;margin:16px 0 22px}.flag{display:block;width:min(100%,300px);filter:drop-shadow(0 4px 6px #23345324)}.choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}.choice{color:var(--ink);background:white;border-color:#bac7db;text-align:left;display:flex;align-items:center;gap:12px}.key{font-size:12px;border-radius:6px;background:#eef2fb;padding:2px 7px}.choice.correct{border:2px solid #207449;background:#eaf6ef;color:#164f33}.choice.wrong{border:2px solid #af3a31;background:#fff0ed;color:#842b24}.feedback{padding:16px;border-radius:12px;background:#f0f4fc;margin:20px 0}.feedback strong{display:block;font-size:18px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.actions button{flex:1}.hint{font-size:14px;color:var(--muted);min-height:24px;margin:12px 0}.score{font-size:54px;font-weight:850;color:var(--blue);line-height:1.2;margin:20px 0}.review{list-style:none;padding:0}.review li{padding:16px 0;border-top:1px solid var(--line);display:flex;gap:16px;align-items:center}.mini{width:84px;flex-shrink:0}.review p{font-size:14px;margin:3px 0}.review .flag{width:84px}footer{text-align:center;font-size:12px;color:var(--muted);margin-top:22px}[hidden]{display:none!important}@media(max-width:430px){main{padding:16px 14px 32px}.choices{grid-template-columns:1fr}.flag-stage{min-height:175px;padding:24px}.flag{max-width:240px}.actions{flex-direction:column}.review li{align-items:flex-start}}
+</style>
+</head>
+<body>
+<main>
+<nav><a href="../../">← 전시관으로</a><span>WORK 009</span></nav>
+<header><div class="eyebrow">WORLD FLAG EXPLORERS</div><h1>국기 탐험대</h1><p class="muted">국기를 관찰하고, 세계 여러 나라를 만나 봐요.</p></header>
+<section id="intro" class="panel" aria-labelledby="intro-title">
+<h2 id="intro-title" tabindex="-1">이 국기는 어느 나라일까요?</h2>
+<p>색깔, 줄의 방향, 무늬를 자세히 살펴보고<br>네 개의 보기 중 나라 이름을 골라 보세요.</p>
+<div class="pills"><span class="pill">6학년 세계 지리</span><span class="pill">20개 나라</span><span class="pill">시간 제한 없음</span></div>
+<p class="muted">정답을 고른 뒤에는 나라 설명이 나와요. 틀린 문제는 마지막에 다시 도전할 수 있어요.</p>
+<label for="length">몇 문제에 도전할까요?</label><select id="length"><option value="10">가볍게 10문제</option><option value="20">모두 도전! 20문제</option></select>
+<button id="start" class="wide">탐험 시작 →</button>
+</section>
+<section id="quiz" class="panel" aria-labelledby="question" hidden>
+<div class="meta"><span id="position"></span><span id="points"></span></div><progress id="progress" value="0" max="10" aria-label="답한 문제 수"></progress>
+<h2 id="question" tabindex="-1">이 국기는 어느 나라의 국기일까요?</h2>
+<div id="flag" class="flag-stage"></div>
+<div id="choices" class="choices" role="group" aria-labelledby="question"></div>
+<div class="hint"><button id="hint-button" class="secondary" type="button">대륙 힌트 보기</button><p id="hint" hidden></p></div>
+<div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+<button id="next" class="wide" hidden>다음 문제 →</button>
+</section>
+<section id="result" class="panel" aria-labelledby="result-title" hidden>
+<div class="eyebrow">EXPLORATION COMPLETE</div><h2 id="result-title" tabindex="-1">탐험을 마쳤어요!</h2><p id="score" class="score"></p><p id="message"></p>
+<div class="actions"><button id="retry">틀린 문제 다시 풀기</button><button id="restart" class="secondary">새 탐험 준비</button></div>
+<h3 id="review-title">다시 살펴볼 국기</h3><ul id="review" class="review"></ul>
+</section>
+<footer>번호·제목·설명만 사용하는 3色 링크데이 · 천천히 관찰해도 괜찮아요.</footer>
+</main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const stripes=(colors,vertical=false)=>colors.map((c,i)=>vertical?`<rect x="${300*i/colors.length}" width="${300/colors.length}" height="200" fill="${c}"/>`:`<rect y="${200*i/colors.length}" width="300" height="${200/colors.length}" fill="${c}"/>`).join('');
+const cross=(bg,fg,x=100,w=30)=>`<rect width="300" height="200" fill="${bg}"/><path d="M${x} 0v200M0 100h300" stroke="${fg}" stroke-width="${w}"/>`;
+const countries=[
+{name:'일본',region:'아시아',art:'<rect width="300" height="200" fill="white"/><circle cx="150" cy="100" r="60" fill="#bc002d"/>',fact:'흰 바탕 가운데 빨간 원이 있어요. 수도는 도쿄예요.'},
+{name:'방글라데시',region:'아시아',art:'<rect width="300" height="200" fill="#006a4e"/><circle cx="135" cy="100" r="60" fill="#f42a41"/>',fact:'초록 바탕에 빨간 원이 있어요. 원은 깃대 쪽으로 조금 치우쳐 있어요. 수도는 다카예요.'},
+{name:'팔라우',region:'오세아니아',art:'<rect width="300" height="200" fill="#4aadd6"/><circle cx="130" cy="100" r="60" fill="#ffde00"/>',fact:'하늘색 바탕의 노란 원은 보름달을 나타내요. 태평양에 있는 섬나라예요.'},
+{name:'프랑스',region:'유럽',art:stripes(['#002654','white','#ed2939'],true),fact:'깃대 쪽부터 파랑·하양·빨강의 세로줄이에요. 수도는 파리예요.'},
+{name:'이탈리아',region:'유럽',art:stripes(['#009246','white','#ce2b37'],true),fact:'초록·하양·빨강의 세로줄이에요. 지도에서 장화 모양으로 보이는 나라예요.'},
+{name:'독일',region:'유럽',art:stripes(['#000','#dd0000','#ffce00']),fact:'위에서부터 검정·빨강·금색의 가로줄이에요. 수도는 베를린이에요.'},
+{name:'벨기에',region:'유럽',art:stripes(['#000','#fdda24','#ef3340'],true),fact:'검정·노랑·빨강의 세로줄이에요. 독일 국기와 줄의 방향을 비교해 보세요.'},
+{name:'네덜란드',region:'유럽',art:stripes(['#ae1c28','white','#21468b']),fact:'위에서부터 빨강·하양·파랑이에요. 풍차와 튤립으로 잘 알려져 있어요.'},
+{name:'러시아',region:'유럽과 아시아',art:stripes(['white','#0039a6','#d52b1e']),fact:'위에서부터 하양·파랑·빨강이에요. 유럽과 아시아에 걸쳐 있는 나라예요.'},
+{name:'우크라이나',region:'유럽',art:stripes(['#0057b7','#ffd700']),fact:'위쪽은 파랑, 아래쪽은 노랑이에요. 수도는 키이우예요.'},
+{name:'오스트리아',region:'유럽',art:stripes(['#ed2939','white','#ed2939']),fact:'빨강·하양·빨강의 가로줄이에요. 수도 빈은 음악의 도시로 유명해요.'},
+{name:'폴란드',region:'유럽',art:stripes(['white','#dc143c']),fact:'위쪽이 하양, 아래쪽이 빨강이에요. 인도네시아 국기와 색의 순서가 반대예요.'},
+{name:'인도네시아',region:'아시아',art:stripes(['#ff0000','white']),fact:'위쪽이 빨강, 아래쪽이 하양이에요. 동남아시아의 많은 섬으로 이루어진 나라예요.'},
+{name:'나이지리아',region:'아프리카',art:stripes(['#008751','white','#008751'],true),fact:'초록·하양·초록의 세로줄이에요. 아프리카 서부에 있는 나라예요.'},
+{name:'아일랜드',region:'유럽',art:stripes(['#169b62','white','#ff883e'],true),fact:'초록·하양·주황의 세로줄이에요. 이탈리아 국기의 빨강과 주황을 구별해 보세요.'},
+{name:'스웨덴',region:'유럽',art:cross('#006aa7','#fecc00',95,32),fact:'파란 바탕에 노란 십자가가 있어요. 유럽 북부의 나라예요.'},
+{name:'핀란드',region:'유럽',art:cross('white','#003580',100,44),fact:'흰 바탕에 파란 십자가가 있어요. 호수와 숲이 많은 나라예요.'},
+{name:'덴마크',region:'유럽',art:cross('#c8102e','white',95,26),fact:'빨간 바탕에 흰 십자가가 가장자리까지 이어져요. 수도는 코펜하겐이에요.'},
+{name:'스위스',region:'유럽',square:true,art:'<rect width="200" height="200" fill="#da291c"/><path d="M100 40v120M40 100h120" stroke="white" stroke-width="36"/>',fact:'정사각형의 빨간 바탕에 흰 십자가가 있어요. 십자가는 가장자리에 닿지 않아요.'},
+{name:'태국',region:'아시아',art:'<rect width="300" height="200" fill="#a51931"/><rect y="33.333" width="300" height="133.334" fill="white"/><rect y="66.666" width="300" height="66.668" fill="#2d2a4a"/>',fact:'빨강·하양·파랑·하양·빨강의 가로줄이에요. 가운데 파란 줄이 더 넓어요. 수도는 방콕이에요.'}
+];
+function flag(country,label){const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox',country.square?'0 0 200 200':'0 0 300 200');svg.setAttribute('class','flag');svg.setAttribute('role','img');svg.setAttribute('aria-label',label);if(country.square)svg.style.maxWidth='200px';svg.innerHTML=country.art;return svg;}
+function shuffled(items){const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+let questions=[],index=0,correct=0,mistakes=[],answered=false;
+function show(id){for(const panel of ['intro','quiz','result'])$(panel).hidden=panel!==id;}
+function start(pool,count){questions=shuffled(pool).slice(0,count);index=0;correct=0;mistakes=[];show('quiz');render();}
+function render(){answered=false;const q=questions[index];$('position').textContent=`${index+1} / ${questions.length} 문제`;$('points').textContent=`정답 ${correct}개`;$('progress').max=questions.length;$('progress').value=index;$('flag').replaceChildren(flag(q,'문제의 국기: 색깔과 무늬를 보고 나라를 골라 보세요.'));$('hint').hidden=true;$('hint-button').hidden=false;$('feedback').hidden=true;$('next').hidden=true;$('next').textContent=index===questions.length-1?'탐험 결과 보기 →':'다음 문제 →';
+const options=shuffled([q,...shuffled(countries.filter(c=>c.name!==q.name)).slice(0,3)]);
+$('choices').replaceChildren(...options.map((c,i)=>{const b=document.createElement('button');b.type='button';b.className='choice';b.dataset.name=c.name;const key=document.createElement('span');key.className='key';key.textContent=i+1;key.setAttribute('aria-hidden','true');const text=document.createElement('span');text.textContent=c.name;b.append(key,text);b.addEventListener('click',()=>answer(c.name,b));return b;}));$('question').focus();}
+function answer(name,button){if(answered)return;answered=true;const q=questions[index],ok=name===q.name;if(ok)correct++;else mistakes.push({...q,selected:name});for(const b of $('choices').children){b.disabled=true;if(b.dataset.name===q.name){b.classList.add('correct');b.lastChild.textContent+=' · 정답';}}if(!ok){button.classList.add('wrong');button.lastChild.textContent+=' · 고른 답';}const title=document.createElement('strong');title.textContent=ok?'정답이에요!':`정답은 ${q.name}이에요.`;const detail=document.createElement('p');detail.textContent=`${q.region} · ${q.fact}`;$('feedback').replaceChildren(title,detail);$('feedback').hidden=false;$('hint-button').hidden=true;$('points').textContent=`정답 ${correct}개`;$('progress').value=index+1;$('next').hidden=false;$('next').focus();}
+function finish(){show('result');$('score').textContent=`${correct} / ${questions.length}`;$('message').textContent=mistakes.length?'새로운 나라를 만났어요! 헷갈린 국기를 한 번 더 살펴볼까요?':'모든 국기를 맞혔어요! 멋진 세계 탐험가예요.';$('retry').hidden=!mistakes.length;$('review-title').hidden=!mistakes.length;$('review').replaceChildren(...mistakes.map(q=>{const li=document.createElement('li');const mini=document.createElement('div');mini.className='mini';mini.append(flag(q,`${q.name} 국기`));const body=document.createElement('div');const name=document.createElement('strong');name.textContent=q.name;const selected=document.createElement('p');selected.textContent=`고른 답: ${q.selected}`;const fact=document.createElement('p');fact.textContent=q.fact;body.append(name,selected,fact);li.append(mini,body);return li;}));$('result-title').focus();}
+$('start').addEventListener('click',()=>start(countries,Number($('length').value)));
+$('hint-button').addEventListener('click',()=>{$('hint').textContent=`대륙 힌트: ${questions[index].region}`;$('hint').hidden=false;$('hint-button').hidden=true;});
+$('next').addEventListener('click',()=>{if(!answered)return;if(++index<questions.length)render();else finish();});
+$('retry').addEventListener('click',()=>start(mistakes,mistakes.length));
+$('restart').addEventListener('click',()=>{show('intro');$('intro-title').focus();});
+document.addEventListener('keydown',e=>{if($('quiz').hidden||answered||e.altKey||e.ctrlKey||e.metaKey||!['1','2','3','4'].includes(e.key))return;e.preventDefault();$('choices').children[Number(e.key)-1].click();});
+</script>
+</body>
+</html>
