@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>접어라! 직육면체 연구소 · 006</title>
+<style>
+:root{--ink:#193342;--muted:#576d79;--green:#167369;--paper:#f3f7f6;--line:#d7e3e1}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,"Malgun Gothic",sans-serif;line-height:1.6}button,input{font:inherit}button,a,input{touch-action:manipulation}button{cursor:pointer}button:disabled{cursor:default;opacity:.65}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #b15719;outline-offset:4px}a{color:var(--green)}.wrap{width:min(1160px,calc(100% - 40px));margin:auto}.top{display:flex;justify-content:space-between;gap:12px;padding:22px 0;font-size:13px}.top a{text-decoration:none;font-weight:750}.badge{letter-spacing:.12em;color:var(--muted);font-size:11px}header{padding:24px 0 30px}h1{font-size:clamp(30px,5vw,48px);letter-spacing:-.055em;line-height:1.25;margin:10px 0 14px}h1 span{color:var(--green)}header p{color:var(--muted);margin:0;max-width:650px}.eyebrow{font-size:12px;letter-spacing:.1em;font-weight:800;color:var(--green)}.layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(280px,1fr);gap:22px;align-items:start}.lab,.quiz{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden}.section-head{padding:22px 24px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px}h2{font-size:20px;margin:0;letter-spacing:-.03em}.step{font-size:11px;color:var(--green);font-weight:800;letter-spacing:.08em}.state{font-size:12px;padding:5px 12px;border-radius:30px;background:#e9f4ef;color:#126454;white-space:nowrap}.stage{position:relative;margin:0 12px;border-radius:15px;background-color:#172e3f;background-image:radial-gradient(#3a5261 1px,transparent 1px);background-size:22px 22px;color:#fff;overflow:hidden}.stage svg{display:block;width:100%;height:auto;aspect-ratio:1.23;max-height:480px;touch-action:none;cursor:grab}.stage svg:active{cursor:grabbing}.stage-hint{position:absolute;top:13px;left:16px;font-size:11px;color:#c4d8e3;pointer-events:none}.stage svg text{font-size:13px;font-weight:800;pointer-events:none;paint-order:stroke;stroke:white;stroke-width:3px;stroke-linejoin:round;fill:#17313e}.stage polygon{stroke:#172e3f;stroke-width:2;stroke-linejoin:round}.controls{padding:19px 24px 24px}.range-title{display:flex;justify-content:space-between;font-size:14px;font-weight:750}input[type=range]{width:100%;accent-color:var(--green);margin:15px 0 8px;min-height:28px}.range-ends{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}.buttons{display:flex;gap:8px;flex-wrap:wrap;margin:17px 0}.btn{border:1px solid var(--line);background:white;border-radius:10px;padding:10px 14px;font-size:13px;color:var(--ink);font-weight:700;min-height:44px}.primary{background:var(--green);color:white;border-color:var(--green)}.btn:hover:not(:disabled){filter:brightness(.96)}.face-buttons{display:flex;gap:6px;flex-wrap:wrap}.face-btn{border:2px solid transparent;border-radius:8px;padding:7px 11px;font-size:12px;font-weight:750;color:#17313e;min-height:40px}.face-btn[aria-pressed=true]{border-color:var(--ink)}.note{background:#f1f7f5;border-radius:10px;padding:12px 14px;font-size:13px;min-height:68px;margin:12px 0 0}.small{font-size:12px;color:var(--muted)}.view{border-top:1px solid var(--line);padding-top:12px;margin-top:15px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}.view .btn{padding:6px 12px}.quiz{padding:24px}.quiz .section-head{padding:0 0 17px}.progress{height:5px;border-radius:5px;background:#e8eeec;margin-bottom:20px}.progress span{display:block;height:100%;border-radius:5px;background:var(--green);transition:width .2s}#question{font-size:21px;line-height:1.5;letter-spacing:-.03em;margin:10px 0 18px}.answers{display:grid;gap:10px}.answer{text-align:left;background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;color:var(--ink);min-height:50px}.answer:hover:not(:disabled){background:#eff8f4;border-color:var(--green)}.answer.correct{background:#e0f4e9;border:2px solid #278159;color:#165334;opacity:1}.answer.wrong{background:#fff0e9;border:2px solid #bd603a;opacity:1}#feedback{font-size:14px;min-height:84px;padding:16px 0 4px}#next{width:100%}.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}.fact{background:#fff;border:1px solid var(--line);border-radius:15px;padding:15px 10px;text-align:center}.fact strong{display:block;font-size:28px;line-height:1.2;color:var(--green)}.fact span{font-size:12px;color:var(--muted)}footer{color:var(--muted);font-size:12px;text-align:center;padding:12px 0 30px}.tip{margin:18px 0 0;font-size:12px;color:var(--muted)}[hidden]{display:none!important}@media(max-width:800px){.layout{grid-template-columns:1fr}.wrap{width:calc(100% - 28px)}header{padding-top:10px}.badge{font-size:9px}.quiz{padding:22px}.stage svg{max-height:420px}.section-head,.controls{padding-left:18px;padding-right:18px}.facts{gap:8px}.fact strong{font-size:25px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+.stage svg .vertex-label{font-size:17px;stroke:#172e3f;stroke-width:5px;fill:white}.stage svg .edge-label{font-size:14px;stroke:#172e3f;stroke-width:5px;fill:#fff1b2}.dimensions{display:flex;flex-wrap:wrap;gap:8px;margin:0 12px 12px}.dimensions span{background:#eef6f3;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700}.level-banner{display:flex;gap:12px;justify-content:space-between;align-items:center;background:#e4f3ed;border:1px solid #c5dfd4;border-radius:14px;padding:14px 18px;margin-bottom:20px}.level-banner strong{color:var(--green)}.level-banner span{font-size:13px}.reference{font-size:13px;line-height:1.9;margin-top:15px;padding:12px;background:#f4f7fa;border-radius:10px}.quiz{position:sticky;top:16px}@media(max-width:800px){.quiz{position:static}.level-banner{align-items:start;flex-direction:column;gap:3px}.stage svg .vertex-label{font-size:21px}.stage svg .edge-label{font-size:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <div class="top"><a href="../../">← 전시관으로</a><span class="badge">LINKDAY · WORK 006</span></div>
+ <header><div class="eyebrow">만지고 생각하는 도형 시간</div><h1>접어라! <span>직육면체 연구소</span></h1><p>납작한 전개도가 입체 상자로 변신해요.<br>꼭짓점 ㄱ부터 ㅇ까지 살펴보고, 모형을 보며 10문제씩 단계에 도전해 보세요.</p></header>
+ <main>
+ <div class="level-banner" aria-live="polite"><strong id="level-label">1단계 · 직육면체</strong><span id="level-detail">10문제를 풀면 새 모형으로 다음 단계!</span></div>
+ <div class="layout">
+  <section class="lab" aria-labelledby="lab-title">
+   <div class="section-head"><div><div class="step">01 · 전개도 실험</div><h2 id="lab-title">한 장에서 상자로</h2></div><span class="state" id="state">활짝 펼친 전개도</span></div>
+   <div class="dimensions" id="dimensions"></div><div class="stage"><div class="stage-hint">드래그로 회전 · 숨은 모서리는 점선이에요</div><svg id="model" viewBox="0 0 600 490" role="img" aria-label="여섯 개의 면으로 이루어진 직육면체 전개도"><g id="faces"></g><g id="annotations"></g></svg></div>
+   <div class="controls">
+    <div class="range-title"><label for="fold">얼마나 접어 볼까요?</label><output id="fold-value" for="fold">0%</output></div>
+    <input id="fold" type="range" min="0" max="100" value="0" aria-describedby="fold-help"><div class="range-ends" id="fold-help"><span>0% · 전개도</span><span>100% · 직육면체</span></div>
+    <div class="buttons"><button class="btn primary" id="animate">▶ 자동으로 접기</button><button class="btn" id="unfold">펼치기</button><button class="btn" id="close">완전히 접기</button></div>
+    <p class="small">면 버튼을 누르면 면을 이루는 꼭짓점과 마주 보는 면을 알아볼 수 있어요.</p>
+    <div class="face-buttons" id="face-buttons" aria-label="면 살펴보기"></div>
+    <p class="note" id="face-info" role="status">접히는 선을 따라 여섯 면이 움직여요. 모두 접으면 빈틈없이 닫힌 직육면체가 돼요.</p>
+    <div class="view"><span class="small">보기 방향</span><button class="btn" id="left" aria-label="왼쪽으로 돌리기">↶ 왼쪽</button><button class="btn" id="right" aria-label="오른쪽으로 돌리기">오른쪽 ↷</button><button class="btn" id="view-reset">처음 방향</button></div>
+    <div class="reference" id="reference"></div><p class="tip">전개도에 같은 글자가 여러 번 보이면, 접었을 때 하나로 만나는 꼭짓점이에요. 슬라이더는 키보드 ← →로도 조절할 수 있어요. 면의 이름은 상자를 접었을 때를 기준으로 해요. 돌려도 이름은 그대로예요.</p>
+   </div>
+  </section>
+  <section class="quiz" aria-labelledby="quiz-title">
+   <div class="section-head"><div><div class="step">02 · 생각 확인</div><h2 id="quiz-title">도형 탐정 퀴즈</h2></div><span class="state" id="quiz-count">1 / 10</span></div>
+   <div class="progress" aria-hidden="true"><span id="progress" style="width:0%"></span></div>
+   <div id="quiz-body"><p class="small">옆의 모형과 길이 표시를 보고 답을 골라 보세요. (작은 화면에서는 위에 있어요.)</p><h3 id="question"></h3><div class="answers" id="answers"></div><div id="feedback" role="status" aria-live="polite"></div><button class="btn primary" id="next" hidden>다음 문제 →</button></div>
+   <div id="result" hidden aria-live="polite"><h3 id="result-title">1단계 완료!</h3><p id="score"></p><p>10문제를 모두 풀었어요. 다음 단계에서는 크기와 색이 다른 직육면체를 살펴봐요.</p><button class="btn primary" id="advance">2단계로 →</button><button class="btn" id="retry" style="margin-top:10px">이 단계 다시 풀기</button></div>
+  </section>
+ </div>
+ <div class="facts" aria-label="직육면체의 특징"><div class="fact"><strong>6</strong><span>평평한 면</span></div><div class="fact"><strong>12</strong><span>면과 면이 만나는 모서리</span></div><div class="fact"><strong>8</strong><span>모서리가 만나는 꼭짓점</span></div></div>
+ </main>
+ <footer>여섯 면을 접으며 공간을 상상해요 · 로그인이나 저장 없이 즐기는 도형 실험</footer>
+</div>
+<noscript>전개도를 접고 퀴즈를 풀려면 JavaScript를 켜 주세요.</noscript>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const definitions=[
+ {id:'front',name:'앞면',color:'#f5bb70',other:'back'},
+ {id:'back',name:'뒷면',color:'#bca7ee',other:'front'},
+ {id:'left',name:'왼쪽 면',color:'#77c8ef',other:'right'},
+ {id:'right',name:'오른쪽 면',color:'#f28e9a',other:'left'},
+ {id:'top',name:'윗면',color:'#7cd6b6',other:'bottom'},
+ {id:'bottom',name:'아랫면',color:'#f3dc7d',other:'top'}
+];
+let yaw=-.5,pitch=.3,selected=null,animation=null;
+let level=1,current=0,score=0,totalAnswered=0,answered=false;
+let w=150,h=100,d=80,dimensions={width:6,height:4,depth:3};
+const vertexNames=['ㄱ','ㄴ','ㄷ','ㄹ','ㅁ','ㅂ','ㅅ','ㅇ'];
+const faceNames={front:'ㄱㄴㄷㄹ',back:'ㅁㅂㅅㅇ',left:'ㄱㄹㅇㅁ',right:'ㄴㄷㅅㅂ',top:'ㄱㄴㅂㅁ',bottom:'ㄹㄷㅅㅇ'};
+const palettes=[['#f5bb70','#bca7ee','#77c8ef','#f28e9a','#7cd6b6','#f3dc7d'],['#86cce8','#edc27d','#b0c4f4','#c3db91','#eda7c8','#98dcce'],['#c6b3ef','#96d9bd','#f2b28e','#8fcbd4','#edcf7f','#e6a8b8']];
+function canonical(){return [[-w/2,-h/2,0],[w/2,-h/2,0],[w/2,h/2,0],[-w/2,h/2,0],[-w/2,-h/2,d],[w/2,-h/2,d],[w/2,h/2,d],[-w/2,h/2,d]];}
+function vertexIndex(point){return canonical().findIndex(v=>v.every((n,i)=>Math.abs(n-point[i])<.001));}
+let questions=[];
+
+const rx=([x,y,z],a)=>[x,y*Math.cos(a)-z*Math.sin(a),y*Math.sin(a)+z*Math.cos(a)];
+const ry=([x,y,z],a)=>[x*Math.cos(a)+z*Math.sin(a),y,-x*Math.sin(a)+z*Math.cos(a)];
+const add=(a,b)=>a.map((v,i)=>v+b[i]);
+const rect=(x1,y1,x2,y2)=>[[x1,y1,0],[x2,y1,0],[x2,y2,0],[x1,y2,0]];
+function geometry(a){
+ const top=p=>add([0,-h/2,0],rx(p,-a));
+ return {
+  front:rect(-w/2,-h/2,w/2,h/2),
+  left:rect(-d,-h/2,0,h/2).map(p=>add([-w/2,0,0],ry(p,a))),
+  right:rect(0,-h/2,d,h/2).map(p=>add([w/2,0,0],ry(p,-a))),
+  top:rect(-w/2,-d,w/2,0).map(top),
+  bottom:rect(-w/2,0,w/2,d).map(p=>add([0,h/2,0],rx(p,a))),
+  back:rect(-w/2,-h,w/2,0).map(p=>top(add([0,-d,0],rx(p,-a))))
+ };
+}
+function draw(){
+ const value=Number($('fold').value), points=geometry(value/100*Math.PI/2),closed=geometry(Math.PI/2),scale=1.05+value*.012;
+ const project=p=>{const v=rx(ry(add(p,[0,40*(1-value/100),-d/2]),yaw),pitch);return [300+v[0]*scale,245+v[1]*scale,v[2]];};
+ const faces=definitions.map(f=>{
+  const vertices=points[f.id].map(p=>rx(ry(add(p,[0,40*(1-value/100),-d/2]),yaw),pitch));
+  const center=vertices.reduce((sum,p)=>add(sum,p.map(v=>v/4)),[0,0,0]);
+  return {...f,vertices,center};
+ }).sort((a,b)=>a.center[2]-b.center[2]);
+ $('faces').replaceChildren();
+ for(const f of faces){
+  const group=document.createElementNS('http://www.w3.org/2000/svg','g');
+  const polygon=document.createElementNS(group.namespaceURI,'polygon');
+  polygon.setAttribute('points',f.vertices.map(p=>`${300+p[0]*scale},${245+p[1]*scale}`).join(' '));
+  polygon.setAttribute('fill',f.color);
+  if(selected===f.id){polygon.style.stroke='white';polygon.style.strokeWidth='4';}
+  const text=document.createElementNS(group.namespaceURI,'text');
+  text.setAttribute('x',300+f.center[0]*scale);text.setAttribute('y',245+f.center[1]*scale);text.setAttribute('text-anchor','middle');text.setAttribute('dominant-baseline','middle');
+  const xs=f.vertices.map(p=>p[0]*scale),ys=f.vertices.map(p=>p[1]*scale);
+  text.textContent=Math.max(...xs)-Math.min(...xs)>48&&Math.max(...ys)-Math.min(...ys)>24?f.name:'';
+  group.append(polygon,text);$('faces').append(group);
+ }
+ $('annotations').replaceChildren();
+ const seen=new Set(),byName={};
+ for(const face of definitions){points[face.id].forEach((point,i)=>{
+  const index=vertexIndex(closed[face.id][i]),name=vertexNames[index],position=project(point);
+  if(!byName[name])byName[name]=position;
+  const key=name+point.map(v=>Math.round(v*100)).join(',');if(seen.has(key))return;seen.add(key);
+  const circle=document.createElementNS('http://www.w3.org/2000/svg','circle');circle.setAttribute('cx',position[0]);circle.setAttribute('cy',position[1]);circle.setAttribute('r',4);circle.setAttribute('fill','#fff');circle.setAttribute('stroke','#17313e');
+  const label=document.createElementNS(circle.namespaceURI,'text');label.setAttribute('x',position[0]+(position[0]<300?-13:13));label.setAttribute('y',position[1]+(position[1]<245?-12:19));label.setAttribute('text-anchor','middle');label.setAttribute('class','vertex-label');label.textContent=name;
+  $('annotations').append(circle,label);
+ });}
+ if(value===100){
+  const ordered=vertexNames.map(name=>({name,p:byName[name]})).sort((a,b)=>a.p[2]-b.p[2]);
+  const hidden=ordered[0],index=vertexNames.indexOf(hidden.name),vertices=canonical();
+  const connections=vertices.map((p,i)=>({i,diff:p.filter((v,k)=>Math.abs(v-vertices[index][k])>.001).length})).filter(v=>v.diff===1);
+  for(const connection of connections){const other=byName[vertexNames[connection.i]],line=document.createElementNS('http://www.w3.org/2000/svg','line');line.setAttribute('x1',hidden.p[0]);line.setAttribute('y1',hidden.p[1]);line.setAttribute('x2',other[0]);line.setAttribute('y2',other[1]);line.setAttribute('stroke','#294958');line.setAttribute('stroke-width','2');line.setAttribute('stroke-dasharray','6 5');$('annotations').prepend(line);}
+ }
+ $('fold-value').textContent=value+'%';
+ $('state').textContent=value===0?'활짝 펼친 전개도':value===100?'직육면체 완성!':'차근차근 접는 중';
+ $('model').setAttribute('aria-label',`직육면체 전개도를 ${value}% 접은 모형. 꼭짓점 ㄱ, ㄴ, ㄷ, ㄹ, ㅁ, ㅂ, ㅅ, ㅇ. 모서리 ㄱㄴ ${dimensions.width}cm, ㄴㄷ ${dimensions.height}cm, ㄱㅁ ${dimensions.depth}cm.`);
+}
+function stop(){if(animation!==null)cancelAnimationFrame(animation);animation=null;$('animate').textContent='▶ 자동으로 접기';}
+function setFold(value){stop();$('fold').value=value;draw();}
+$('fold').addEventListener('input',()=>{stop();draw();});
+$('close').onclick=()=>setFold(100);$('unfold').onclick=()=>setFold(0);
+$('animate').onclick=()=>{
+ if(animation!==null){stop();return;}
+ if(Number($('fold').value)===100)$('fold').value=0;
+ if(matchMedia('(prefers-reduced-motion: reduce)').matches){setFold(100);return;}
+ const initial=Number($('fold').value),start=performance.now();
+ $('animate').textContent='Ⅱ 잠깐 멈추기';
+ function step(now){const value=Math.min(100,initial+(now-start)/28);$('fold').value=Math.round(value);draw();if(value<100)animation=requestAnimationFrame(step);else stop();}
+ animation=requestAnimationFrame(step);
+};
+function faceButtons(){
+ $('face-buttons').replaceChildren();
+ for(const face of definitions){
+  const button=document.createElement('button');button.className='face-btn';button.textContent=face.name+' '+faceNames[face.id];button.style.background=face.color;button.setAttribute('aria-pressed','false');
+  button.onclick=()=>{selected=face.id;for(const b of $('face-buttons').children)b.setAttribute('aria-pressed',String(b===button));const other=definitions.find(f=>f.id===face.other);$('face-info').textContent=`면 ${faceNames[face.id]}(${face.name})과 면 ${faceNames[other.id]}(${other.name})은 서로 마주 봐요. 모양과 크기가 같고 서로 평행해요.`;draw();};
+  $('face-buttons').append(button);
+ }
+}
+$('left').onclick=()=>{yaw-=.25;draw();};$('right').onclick=()=>{yaw+=.25;draw();};$('view-reset').onclick=()=>{yaw=-.5;pitch=.3;draw();};
+let drag=null;
+$('model').addEventListener('pointerdown',e=>{if(e.button!==0)return;drag={x:e.clientX,y:e.clientY};$('model').setPointerCapture(e.pointerId);});
+$('model').addEventListener('pointermove',e=>{if(!drag)return;yaw+=(e.clientX-drag.x)*.008;pitch=Math.max(-1.3,Math.min(1.3,pitch+(e.clientY-drag.y)*.008));drag={x:e.clientX,y:e.clientY};draw();});
+for(const event of ['pointerup','pointercancel','lostpointercapture'])$('model').addEventListener(event,()=>drag=null);
+function makeQuestions(){
+ const {width:a,height:b,depth:c}=dimensions;
+ const items=[
+  {q:'모형에서 모서리 ㄱㄴ의 길이는 몇 cm인가요?',correct:a+' cm',wrong:[b+' cm',c+' cm'],why:`길이 표시에 따르면 ㄱㄴ은 ${a} cm예요. ㄱㄴ과 같은 방향의 모서리도 살펴보세요.`},
+  {q:'모서리 ㄱㄴ과 평행한 모서리는 어느 것인가요?',correct:'모서리 ㄹㄷ',wrong:['모서리 ㄴㄷ','모서리 ㄱㅁ'],why:'ㄱㄴ과 ㄹㄷ은 같은 방향으로 나란해요. 아무리 늘여도 만나지 않으므로 평행해요.'},
+  {q:'면 ㄱㄴㄷㄹ과 평행한 면은 어느 것인가요?',correct:'면 ㅁㅂㅅㅇ',wrong:['면 ㄱㄴㅂㅁ','면 ㄴㄷㅅㅂ'],why:'면 ㄱㄴㄷㄹ(앞면)과 면 ㅁㅂㅅㅇ(뒷면)은 서로 마주 보므로 평행해요.'},
+  {q:'꼭짓점 ㄱ에서 만나는 모서리 3개를 바르게 묶은 것은?',correct:'ㄱㄴ, ㄱㄹ, ㄱㅁ',wrong:['ㄱㄴ, ㄴㄷ, ㄷㄹ','ㄱㅁ, ㅁㅂ, ㅂㅅ'],why:'ㄱ에서 선을 따라가면 ㄴ, ㄹ, ㅁ과 바로 이어져요. 한 꼭짓점에서 모서리 3개가 만나요.'},
+  {q:'모서리 ㅁㅂ의 길이는 몇 cm인가요?',correct:a+' cm',wrong:[b+' cm',c+' cm'],why:`ㅁㅂ은 ㄱㄴ과 서로 평행하고 길이가 같은 모서리예요. 따라서 ${a} cm예요.`},
+  {q:'면 ㄱㄴㅂㅁ과 수직인 면은 어느 것인가요?',correct:'면 ㄱㄴㄷㄹ',wrong:['면 ㄹㄷㅅㅇ','그런 면은 없어요'],why:'윗면 ㄱㄴㅂㅁ과 앞면 ㄱㄴㄷㄹ은 모서리 ㄱㄴ에서 직각으로 만나요. 아랫면 ㄹㄷㅅㅇ은 윗면과 평행해요.'},
+  {q:'모서리 ㄹㅇ의 길이는 몇 cm인가요?',correct:c+' cm',wrong:[a+' cm',b+' cm'],why:`ㄹㅇ은 ㄱㅁ과 같은 방향의 모서리예요. 길이도 같으므로 ${c} cm예요.`},
+  {q:'면 ㄱㄴㄷㄹ의 두 변 ㄱㄴ과 ㄴㄷ의 길이는?',correct:`${a} cm, ${b} cm`,wrong:[`${a} cm, ${c} cm`,`${b} cm, ${c} cm`],why:`앞면은 ㄱㄴ이 ${a} cm, ㄴㄷ이 ${b} cm인 직사각형이에요.`},
+  {q:'직육면체를 접으면 꼭짓점 ㄷ과 모서리로 바로 이어지는 점은?',correct:'ㄴ, ㄹ, ㅅ',wrong:['ㄱ, ㅁ, ㅇ','ㄴ, ㅂ, ㅁ'],why:'ㄷ에서 나오는 세 모서리는 ㄷㄴ, ㄷㄹ, ㄷㅅ이에요. 모형을 돌려서 찾아보세요.'},
+  {q:'이 직육면체의 모든 모서리 길이를 더하면 몇 cm인가요?',correct:4*(a+b+c)+' cm',wrong:[2*(a+b+c)+' cm',(a+b+c)+' cm'],why:`${a} cm인 모서리 4개, ${b} cm인 모서리 4개, ${c} cm인 모서리 4개예요. (${a}+${b}+${c}) × 4 = ${4*(a+b+c)} cm예요.`}
+ ];
+ return items.map((item,i)=>{const options=[item.correct,...item.wrong];const shift=(level+i)%3;return {...item,options:options.slice(shift).concat(options.slice(0,shift))};});
+}
+function showQuestion(focus=false){
+ answered=false;const item=questions[current];$('question').textContent=item.q;$('quiz-count').textContent=`${current+1} / 10`;$('progress').style.width=`${current*10}%`;$('feedback').textContent='';$('next').hidden=true;$('answers').replaceChildren();
+ item.options.forEach(option=>{const button=document.createElement('button');button.className='answer';button.textContent=option;button.onclick=()=>{
+  if(answered)return;answered=true;totalAnswered++;const correct=option===item.correct;if(correct)score++;
+  [...$('answers').children].forEach(b=>{b.disabled=true;if(b.textContent===item.correct)b.classList.add('correct');else if(b===button)b.classList.add('wrong');});
+  $('feedback').textContent=(correct?'정답이에요! ':'정답은 ‘'+item.correct+'’예요. ')+item.why;
+  $('progress').style.width=`${(current+1)*10}%`;
+  $('next').hidden=false;$('next').textContent=current===9?'단계 결과 보기 →':'다음 문제 →';
+ };$('answers').append(button);});
+ if(focus)$('answers').firstElementChild.focus({preventScroll:true});
+}
+function startLevel(focus=false){
+ stop();current=0;score=0;selected=null;yaw=-.5;pitch=.3;
+ // 세 변의 길이는 항상 서로 다르게 구성해요.
+ const n=level-1;dimensions={width:7+n%5,height:4+n%3,depth:2+n%2};
+ const max=Math.max(...Object.values(dimensions));w=dimensions.width/max*150;h=dimensions.height/max*150;d=dimensions.depth/max*150;
+ definitions.forEach((f,i)=>f.color=palettes[n%palettes.length][i]);
+ $('level-label').textContent=`${level}단계 · ${dimensions.width} × ${dimensions.height} × ${dimensions.depth} cm 직육면체`;
+ $('level-detail').textContent='한 단계 10문제 · 모두 풀면 다음 단계로!';
+ $('dimensions').replaceChildren();for(const [edge,length] of [['ㄱㄴ',dimensions.width],['ㄴㄷ',dimensions.height],['ㄱㅁ',dimensions.depth]]){const chip=document.createElement('span');chip.textContent=`모서리 ${edge} = ${length} cm`;$('dimensions').append(chip);}
+ $('reference').textContent='꼭짓점: ㄱ, ㄴ, ㄷ, ㄹ, ㅁ, ㅂ, ㅅ, ㅇ · 앞면 ㄱㄴㄷㄹ / 뒷면 ㅁㅂㅅㅇ. 숨은 꼭짓점도 글자로 표시했어요. 접힌 모형을 돌려 확인해 보세요.';
+ $('face-info').textContent='면 이름은 둘레를 따라 꼭짓점 4개로 읽어요. 예: 면 ㄱㄴㄷㄹ. 모서리는 두 끝점으로 읽어요. 예: 모서리 ㄱㄴ.';
+ $('quiz-body').hidden=false;$('result').hidden=true;questions=makeQuestions();faceButtons();setFold(100);showQuestion(focus);
+}
+$('next').onclick=()=>{if(!answered)return;current++;if(current===10){$('quiz-body').hidden=true;$('result').hidden=false;$('score').textContent=`10문제 중 ${score}문제 정답! 틀린 문제도 해설을 읽으며 잘 배웠어요.`;$('result-title').textContent=`${level}단계 완료!`;$('quiz-count').textContent='10 / 10';$('advance').textContent=`${level+1}단계로 →`;$('advance').focus({preventScroll:true});}else showQuestion(true);};
+$('advance').onclick=()=>{level++;startLevel(true);};
+$('retry').onclick=()=>startLevel(true);
+startLevel();
+</script>
+</body>
+</html>
