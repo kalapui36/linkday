@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#327461">
+  <title>쏙쏙! 준비물 체크리스트</title>
+  <style>
+    :root{color-scheme:light;--ink:#243d35;--green:#28634f;--muted:#63736a;--line:#dce4d9}
+    *{box-sizing:border-box}body{margin:0;background:#f6f5ec;color:var(--ink);font-family:system-ui,"Malgun Gothic",sans-serif;line-height:1.6}button,input{font:inherit}button,a,input{touch-action:manipulation}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #c36d32;outline-offset:4px}main{width:min(620px,calc(100% - 32px));margin:28px auto 56px}a{color:var(--green);text-underline-offset:4px}.back{font-size:14px}header{padding:30px 0 24px}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--green)}h1{font-size:clamp(29px,7vw,42px);letter-spacing:-.06em;line-height:1.25;margin:12px 0}header p{color:var(--muted);margin:0}.bag{display:inline-grid;place-items:center;width:55px;height:55px;background:#e3ead3;border-radius:18px;font-size:30px;margin-bottom:8px}.panel{background:white;border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 12px 35px #324c3210}.summary{display:flex;justify-content:space-between;align-items:center;gap:12px}.summary h2{font-size:18px;margin:0}.count{color:var(--green);font-size:14px;font-weight:750;white-space:nowrap}.track{background:#edf0e6;height:10px;border-radius:10px;margin:16px 0 10px;overflow:hidden}.fill{height:100%;background:#72a585;width:0;transition:width .2s}.hint{font-size:14px;color:var(--muted);margin:0 0 24px}.add-label{display:block;font-size:14px;font-weight:750;margin-bottom:8px}.add-row{display:flex;gap:8px}input[type=text]{width:100%;min-width:0;padding:12px;border:1px solid #a5b4a7;border-radius:10px;background:#fff}button{border:1px solid var(--line);border-radius:10px;background:white;color:var(--ink);padding:10px 14px;min-height:44px}.primary{background:var(--green);color:white;border-color:var(--green);white-space:nowrap}.primary:hover{background:#1b4c3b}.status{min-height:24px;font-size:13px;color:var(--green);margin:8px 0}.list{padding:0;list-style:none;margin:4px 0 20px}.item{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid #edf0e8}.item label{display:flex;align-items:center;gap:12px;flex:1;min-width:0;cursor:pointer;padding:5px 0;overflow-wrap:anywhere}.item input{width:23px;height:23px;flex-shrink:0;accent-color:var(--green);margin:0}.item.done .name{text-decoration:line-through;color:#7c887e}.delete{font-size:13px;color:#7f5140;padding:8px 12px;flex-shrink:0}.delete:hover{background:#fbf0ea}.empty{text-align:center;background:#f7f8f1;border-radius:12px;padding:26px 12px;color:var(--muted)}.actions{display:flex;gap:8px;flex-wrap:wrap}.actions button{font-size:13px;flex:1}.actions button:disabled{opacity:.45;cursor:default}.note{color:var(--muted);font-size:12px;text-align:center;margin:20px 0 0}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}@media(max-width:400px){.panel{padding:18px}.summary{align-items:flex-start}.summary h2{font-size:16px}}
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../../">← 전시관으로</a>
+    <header>
+      <div class="bag" aria-hidden="true">🎒</div>
+      <div class="eyebrow">WORK 010 · 하루 준비</div>
+      <h1>쏙쏙! 준비물 체크리스트</h1>
+      <p>하나씩 챙기고 체크하면, 오늘 준비 끝!</p>
+    </header>
+    <section class="panel" aria-labelledby="list-title">
+      <div class="summary"><h2 id="list-title">나의 준비물</h2><span class="count" id="count"></span></div>
+      <div class="track" id="progress" role="progressbar" aria-label="준비물 챙기기" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="fill" id="fill"></div></div>
+      <p class="hint" id="hint" aria-live="polite"></p>
+      <form id="add-form">
+        <label class="add-label" for="new-item">챙길 준비물 추가</label>
+        <div class="add-row"><input id="new-item" type="text" maxlength="60" placeholder="예: 색연필, 줄넘기" autocomplete="off" required><button class="primary" type="submit">추가 +</button></div>
+      </form>
+      <p class="status" id="status" role="status"></p>
+      <ul class="list" id="list" aria-label="준비물 목록"></ul>
+      <p class="empty" id="empty" hidden>아직 준비물이 없어요.<br>위에서 첫 준비물을 추가해 보세요!</p>
+      <div class="actions"><button id="uncheck" type="button">체크 모두 해제</button><button id="remove-done" type="button">챙긴 항목 지우기</button></div>
+    </section>
+    <p class="note" id="save-note">목록은 이 브라우저에 자동 저장돼요.<br>개인정보는 적지 않고 준비물 이름만 적어 주세요.</p>
+  </main>
+  <script>
+    'use strict';
+    const key = 'linkday-010-checklist-v1';
+    const $ = id => document.getElementById(id);
+    let items = [{text:'필통',done:false},{text:'공책',done:false},{text:'물통',done:false}];
+    let storageAvailable = true;
+    try {
+      const saved = localStorage.getItem(key);
+      if (saved !== null) {
+        const data = JSON.parse(saved);
+        if (!Array.isArray(data) || !data.every(item => item && typeof item.text === 'string' && item.text.trim() && item.text.length <= 60 && typeof item.done === 'boolean')) throw new Error('Invalid list');
+        items = data;
+      }
+    } catch {
+      $('status').textContent = '저장한 목록을 읽지 못해 기본 목록을 열었어요.';
+    }
+    function save(message) {
+      try {localStorage.setItem(key, JSON.stringify(items));storageAvailable=true;}
+      catch {storageAvailable=false;}
+      $('save-note').textContent = storageAvailable ? '목록은 이 브라우저에 자동 저장돼요. 개인정보는 적지 않고 준비물 이름만 적어 주세요.' : '자동 저장을 사용할 수 없어요. 이 페이지를 닫으면 변경 내용이 사라질 수 있어요.';
+      $('status').textContent = message;
+    }
+    function render() {
+      const done = items.filter(item => item.done).length;
+      const percent = items.length ? Math.round(done / items.length * 100) : 0;
+      $('count').textContent = `${done} / ${items.length}개 완료`;
+      $('fill').style.width = percent + '%';
+      $('progress').setAttribute('aria-valuenow', percent);
+      $('hint').textContent = !items.length ? '필요한 준비물을 추가해 주세요.' : done === items.length ? '🎉 모두 챙겼어요! 가벼운 마음으로 출발해요.' : `앞으로 ${items.length - done}개만 더 챙기면 돼요.`;
+      $('empty').hidden = items.length > 0;
+      $('uncheck').disabled = $('remove-done').disabled = done === 0;
+      $('list').replaceChildren();
+      items.forEach((item, index) => {
+        const row = document.createElement('li'); row.className = 'item' + (item.done ? ' done' : '');
+        const label = document.createElement('label');
+        const checkbox = document.createElement('input'); checkbox.type = 'checkbox'; checkbox.checked = item.done;
+        checkbox.addEventListener('change', () => {
+          item.done = checkbox.checked;
+          save(item.done ? `${item.text}, 챙겼어요!` : `${item.text}, 체크를 해제했어요.`);
+          render();
+          $('list').children[index].querySelector('input').focus();
+        });
+        const name = document.createElement('span'); name.className = 'name'; name.textContent = item.text;
+        label.append(checkbox, name);
+        const remove = document.createElement('button'); remove.type = 'button'; remove.className = 'delete'; remove.textContent = '삭제'; remove.setAttribute('aria-label', `${item.text} 삭제`);
+        remove.addEventListener('click', () => {
+          items.splice(index, 1); save(`${item.text} 항목을 지웠어요.`); render();
+          const next = $('list').children[Math.min(index, items.length - 1)];
+          (next ? next.querySelector('.delete') : $('new-item')).focus();
+        });
+        row.append(label, remove); $('list').append(row);
+      });
+    }
+    $('add-form').addEventListener('submit', event => {
+      event.preventDefault(); const text = $('new-item').value.trim();
+      if (!text) { $('status').textContent = '준비물 이름을 적어 주세요.'; $('new-item').focus(); return; }
+      if (items.some(item => item.text === text)) { $('status').textContent = '이미 목록에 있는 준비물이에요.'; $('new-item').focus(); return; }
+      items.push({text,done:false}); save(`${text} 항목을 추가했어요.`); $('new-item').value = ''; render(); $('new-item').focus();
+    });
+    $('uncheck').addEventListener('click', () => {items.forEach(item => item.done = false); save('모든 체크를 해제했어요. 다시 챙겨 볼까요?'); render(); $('new-item').focus();});
+    $('remove-done').addEventListener('click', () => {items = items.filter(item => !item.done); save('챙긴 항목을 목록에서 지웠어요.'); render(); $('new-item').focus();});
+    render();
+  </script>
+</body>
+</html>
