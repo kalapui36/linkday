@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101413">
+<title>연산 러너 · 011</title>
+<link rel="stylesheet" href="style.css">
+<script src="game.js" defer></script>
+</head>
+<body>
+<svg class="sprite-filters" width="0" height="0" aria-hidden="true" focusable="false">
+  <filter id="runner-key" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  -2 4 -2 0 2.2"></feColorMatrix>
+    <feComposite in2="SourceGraphic" operator="in"></feComposite>
+  </filter>
+</svg>
+<div class="shell">
+  <header class="topbar">
+    <a class="back" href="../../"><span aria-hidden="true">←</span> 전시관</a>
+    <span class="brand">LINKDAY</span>
+  </header>
+  <main id="game-view">
+    <div class="intro">
+      <div>
+        <h1>연산 <em>러너</em></h1>
+        <p>달려오는 문제를 풀고, 정답이 있는 길로 달려요.</p>
+      </div>
+      <dl class="scores">
+        <div><dt>연속 정답</dt><dd id="score">00</dd></div>
+        <div><dt>최고 기록</dt><dd id="best">00</dd></div>
+      </dl>
+    </div>
+
+    <section class="scene" id="scene" aria-label="달리기 코스" tabindex="-1" data-state="ready">
+      <div class="scenery" aria-hidden="true"></div>
+      <canvas id="road" aria-hidden="true"></canvas>
+      <div class="scene-shade" aria-hidden="true"></div>
+      <div class="timer" id="timer" aria-hidden="true"><span></span></div>
+      <div class="course-status"><span></span><span id="course-text">출발 준비</span></div>
+      <div class="time-limit" id="time-limit" role="timer" hidden></div>
+      <div class="question" id="question-panel"><span class="question-tag" id="question-tag">연습 문제</span><strong id="question">7 + 5</strong></div>
+      <button type="button" class="gate gate-left" disabled><span class="sr-only">왼쪽 답 </span><span class="gate-sign" id="gate-left">12</span></button>
+      <button type="button" class="gate gate-right" disabled><span class="sr-only">오른쪽 답 </span><span class="gate-sign" id="gate-right">14</span></button>
+      <div class="runner" id="runner" aria-hidden="true">
+        <div class="shadow"></div>
+        <div class="runner-frame">
+          <img src="runner-sheet.webp" width="1536" height="1024" alt="" fetchpriority="high">
+        </div>
+      </div>
+      <div class="finish" id="finish" hidden>
+        <div>
+          <h2 id="finish-title">달리기 종료</h2>
+          <p id="finish-text"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="controls" aria-label="게임 조작">
+      <div class="actions">
+        <button class="start" id="start"><span aria-hidden="true">▶</span><span id="start-text">달리기 시작</span></button>
+        <button class="settings-button" id="open-settings" type="button">설정</button>
+      </div>
+      <p class="hint">답이 적힌 문을 누르거나 ← · → 방향키로 선택하세요.</p>
+    </section>
+    <p class="sr-only" id="announcement" aria-live="polite"></p>
+  </main>
+  <section class="settings-view" id="settings-view" aria-labelledby="settings-title" hidden>
+    <h1 id="settings-title" tabindex="-1">게임 설정</h1>
+    <form id="settings-form">
+      <fieldset>
+        <legend>달리기 속도</legend>
+        <div class="options">
+          <label><input type="radio" name="speed" value="slow"><span>느림 <small>12초</small></span></label>
+          <label><input type="radio" name="speed" value="normal"><span>보통 <small>9초</small></span></label>
+          <label><input type="radio" name="speed" value="fast"><span>빠름 <small>6초</small></span></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>연산 수준</legend>
+        <div class="options">
+          <label><input type="radio" name="level" value="easy"><span>쉬움</span></label>
+          <label><input type="radio" name="level" value="normal"><span>보통</span></label>
+          <label><input type="radio" name="level" value="hard"><span>어려움</span></label>
+        </div>
+      </fieldset>
+      <fieldset aria-describedby="operation-help">
+        <legend>연산 종류</legend>
+        <p id="operation-help">하나 이상 골라 주세요.</p>
+        <div class="options operation-options">
+          <label><input type="checkbox" name="operations" value="+"><span><b aria-hidden="true">+</b> 덧셈</span></label>
+          <label><input type="checkbox" name="operations" value="−"><span><b aria-hidden="true">−</b> 뺄셈</span></label>
+          <label><input type="checkbox" name="operations" value="×"><span><b aria-hidden="true">×</b> 곱셈</span></label>
+          <label><input type="checkbox" name="operations" value="÷"><span><b aria-hidden="true">÷</b> 나눗셈</span></label>
+        </div>
+        <p class="settings-error" id="settings-error" role="alert" hidden></p>
+      </fieldset>
+      <div class="settings-actions">
+        <button type="submit" class="start">설정 저장</button>
+        <button type="button" class="settings-button" id="cancel-settings">게임으로 돌아가기</button>
+      </div>
+    </form>
+  </section>
+</div>
+</body>
+</html>
