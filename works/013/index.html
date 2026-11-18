@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f6ec">
+<title>어휘 탐험대 · 013</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' font-size='48'%3E🦊%3C/text%3E%3C/svg%3E">
+<style>
+:root {
+  color-scheme: light;
+  --paper: #f7f6ec;
+  --card: #fffefa;
+  --ink: #21382d;
+  --muted: #56675a;
+  --line: #e4e6d9;
+  --deep: #14382e;
+  --green: #276649;
+  --gold: #ffcd6c;
+  --radius: 22px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Apple SD Gothic Neo", "Noto Sans CJK KR", "Malgun Gothic", system-ui, sans-serif;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+[hidden] { display: none !important; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { font: inherit; cursor: pointer; }
+a { color: inherit; }
+button:focus-visible, a:focus-visible, [tabindex="-1"]:focus-visible { outline: 3px solid #be651e; outline-offset: 4px; }
+.app-width { width: min(1112px, calc(100% - 64px)); margin-inline: auto; }
+.header { border-bottom: 1px solid #e9eadc; background: #fcfbf3; }
+.header .app-width { display: flex; align-items: center; justify-content: space-between; min-height: 75px; gap: 12px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; font-size: 1.13rem; font-weight: 900; letter-spacing: -.045em; }
+.brand-mark { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; background: #e8edda; font-size: 21px; }
+.gallery-link { text-decoration: none; color: var(--muted); font-size: .87rem; font-weight: 700; padding: 8px 2px 8px 10px; }
+.gallery-link:hover { color: var(--green); text-decoration: underline; }
+main { padding-block: 28px 35px; }
+.hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  min-height: 390px;
+  border-radius: 28px;
+  background: var(--deep);
+  color: #fffbed;
+}
+.hero-art { position: absolute; z-index: -2; width: 68%; height: 100%; inset: 0 0 0 auto; object-fit: cover; object-position: 64% 56%; }
+.hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #14382e 26%, #14382e 37%, #14382ee8 44%, #14382e00 69%); }
+.hero-content { padding: 38px 48px; width: 58%; }
+.grade {
+  width: fit-content;
+  margin: 0 0 16px;
+  border-radius: 100px;
+  padding: 4px 12px;
+  color: #e4edc8;
+  background: #ffffff16;
+  border: 1px solid #ffffff33;
+  font-size: .76rem;
+  font-weight: 800;
+}
+h1, h2, h3, p { margin-top: 0; }
+h1 { margin-bottom: 17px; font-size: clamp(2.8rem, 6vw, 4.35rem); font-weight: 950; line-height: 1.05; letter-spacing: -.075em; }
+h1 span { display: block; color: #ffce77; }
+.hero-copy { margin-bottom: 24px; color: #e2e9d8; line-height: 1.75; font-size: .99rem; }
+.primary, .secondary {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 9px 16px;
+  font-weight: 850;
+}
+.primary { color: #fffdf6; background: var(--green); }
+.primary:hover { background: #1b563b; }
+.hero .primary { background: var(--gold); color: #382a18; padding-inline: 17px; }
+.hero .primary:hover { background: #ffdb94; }
+.secondary { background: #f1f3e8; color: var(--ink); border-color: var(--line); }
+.secondary:hover { background: #e7ebd9; }
+.progress-panel {
+  margin: 17px 0 27px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  padding: 13px 17px;
+  gap: 12px 22px;
+}
+.progress-main { display: flex; gap: 12px; align-items: center; }
+.progress-icon { display: grid; place-items: center; flex: none; width: 43px; height: 43px; background: #f4f2de; border-radius: 13px; font-size: 21px; }
+.progress-body { flex: 1; }
+.progress-title { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: .91rem; font-weight: 850; }
+.progress-count { color: var(--green); font-variant-numeric: tabular-nums; white-space: nowrap; }
+progress { width: 100%; height: 8px; display: block; appearance: none; border: 0; margin-block: 7px 3px; border-radius: 100px; background: #e9eddf; overflow: hidden; }
+progress::-webkit-progress-bar { background: #e9eddf; }
+progress::-webkit-progress-value { background: #589062; border-radius: 100px; }
+progress::-moz-progress-bar { background: #589062; border-radius: 100px; }
+.journal-toggle { min-height: 40px; padding: 5px 12px; font-size: .85rem; }
+.trails-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 12px; }
+.trails-heading h2 { margin: 0; font-size: 1.55rem; font-weight: 900; letter-spacing: -.055em; }
+.trails-heading p { margin: 0; color: var(--muted); font-size: .86rem; }
+.trail-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.trail {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 16px;
+  color: var(--ink);
+  transition: border-color .16s, transform .16s;
+}
+.trail:hover { border-color: #8da582; transform: translateY(-3px); }
+.trail[data-type="words"] { --tint: #e6f1df; --tone: #315b3f; }
+.trail[data-type="idioms"] { --tint: #fbefd5; --tone: #815323; }
+.trail[data-type="sayings"] { --tint: #efe9f6; --tone: #655077; }
+.trail-top { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 8px; margin-bottom: 10px; }
+.trail-icon { display: grid; place-items: center; width: 43px; height: 43px; border-radius: 12px; background: var(--tint); font-size: 22px; }
+.trail-name { font-size: 1.21rem; font-weight: 900; letter-spacing: -.05em; }
+.trail-description { color: var(--muted); font-size: .86rem; margin-bottom: 10px; }
+.trail-count { font-size: .77rem; color: var(--tone); font-weight: 850; }
+.trail-action { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: auto; color: var(--tone); font-size: .83rem; font-weight: 900; padding-top: 8px; border-top: 1px solid #eeeee4; }
+.trail-action span:last-child { font-size: 1.15rem; }
+.inner { width: min(730px, 100%); margin-inline: auto; }
+.back { margin-bottom: 17px; }
+.activity-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(18px, 5vw, 34px); }
+.activity-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.activity-trail { margin: 0; font-size: 1rem; font-weight: 900; color: var(--green); }
+.activity-step { margin: 0; color: var(--muted); font-size: .88rem; font-weight: 800; }
+.activity-card > progress { margin: 10px 0 23px; }
+.guide { display: flex; align-items: center; gap: 11px; margin-bottom: 14px; }
+.guide-icon { display: grid; place-items: center; flex: none; width: 42px; height: 42px; border-radius: 13px; background: #faedcc; font-size: 24px; }
+.guide p { margin: 0; color: var(--muted); font-size: .92rem; }
+.activity-card h2 { font-size: clamp(1.45rem, 5vw, 2.1rem); line-height: 1.3; letter-spacing: -.045em; margin-bottom: 10px; }
+.definition { font-size: 1.04rem; font-weight: 750; margin-bottom: 16px; }
+.example, .story { background: #f1f3e8; padding: 14px 15px; border-radius: 13px; margin-bottom: 17px; }
+.example strong { color: var(--green); margin-right: 6px; }
+.story { font-weight: 650; line-height: 1.75; }
+.story mark { border-radius: 5px; padding: 1px 7px; color: #624716; background: #ffecb4; white-space: nowrap; }
+.answers { display: grid; gap: 8px; }
+.answer { min-height: 48px; display: flex; align-items: center; gap: 11px; text-align: left; color: var(--ink); background: white; border: 1px solid #dce2d4; border-radius: 12px; padding: 8px 12px; font-weight: 750; }
+.answer:hover:not([aria-disabled="true"]) { border-color: #7da186; background: #fafcf6; }
+.answer-number { display: grid; place-items: center; width: 27px; height: 27px; flex: none; border-radius: 8px; background: #eef1e5; color: var(--muted); font-size: .82rem; }
+.answer.incorrect { color: #79392c; background: #fff3ee; border-color: #e5b4a7; }
+.answer.correct { color: #235a37; background: #edf7e8; border-color: #81ab87; }
+.answer[aria-disabled="true"] { cursor: default; }
+.feedback { margin: 12px 0; color: var(--muted); min-height: 1.6em; }
+.feedback[data-result="correct"] { color: #245b39; }
+.feedback[data-result="incorrect"] { color: #79392c; }
+.completion { text-align: center; }
+.completion-icon { display: grid; place-items: center; margin: 0 auto 14px; width: 65px; height: 65px; background: #f7edce; border-radius: 21px; font-size: 34px; }
+.completion-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; }
+.journal-section + .journal-section { margin-top: 22px; }
+.journal-section h3 { margin-bottom: 8px; font-size: 1.05rem; }
+.journal-section p { color: var(--muted); margin-bottom: 0; }
+details { padding: 9px 12px; margin-bottom: 7px; border: 1px solid var(--line); border-radius: 11px; background: #fbfaf3; }
+summary { color: var(--ink); font-weight: 850; cursor: pointer; }
+details p:first-of-type { margin-top: 5px; }
+details p + p { margin-top: 6px; }
+@media (max-width: 850px) {
+  .hero-content { padding-inline: 30px; width: 61%; }
+}
+@media (max-width: 620px) {
+  .app-width { width: calc(100% - 30px); }
+  .header .app-width { min-height: 61px; }
+  main { padding-top: 16px; }
+  .hero { display: block; border-radius: 20px; }
+  .hero-art { width: 100%; height: 238px; object-position: 60% 55%; }
+  .hero::after { background: linear-gradient(180deg, #14382e00 105px, #14382e40 155px, #14382e 237px); }
+  .hero-content { width: 100%; padding: 163px 22px 23px; }
+  .grade { margin-bottom: 10px; background: #14382ebf; }
+  h1 { margin-bottom: 10px; }
+  .hero-copy { font-size: .93rem; margin-bottom: 16px; }
+  .progress-panel { gap: 9px; padding: 10px; margin-bottom: 22px; }
+  .progress-main { gap: 7px; }
+  .progress-title { font-size: .8rem; }
+  .progress-icon { width: 35px; height: 35px; font-size: 18px; }
+  .journal-toggle { padding-inline: 7px; font-size: .78rem; }
+  .trails-heading { display: block; }
+  .trail-grid { grid-template-columns: 1fr; gap: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="app-width">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">🦊</span> 어휘 탐험대</div>
+    <a class="gallery-link" href="../../">← 전시관으로</a>
+  </div>
+</header>
+<main class="app-width">
+  <div id="home">
+    <section class="hero" aria-labelledby="title">
+      <img class="hero-art" src="./forest.webp" alt="숲속 오솔길에서 지도를 들고 있는 아기 여우 모리">
+      <div class="hero-content">
+        <p class="grade">🌿 초등 4학년 어휘 탐험</p>
+        <h1 id="title">모리와 함께<span>어휘의 숲</span></h1>
+        <p class="hero-copy">아기 여우 모리와 숲길을 걸으며<br>단어, 사자성어, 속담을 발견해 봐요.</p>
+        <button class="primary" type="button" id="start">탐험 시작하기 <span aria-hidden="true">→</span></button>
+      </div>
+    </section>
+    <section class="progress-panel" aria-labelledby="progress-title">
+      <div class="progress-main">
+        <span class="progress-icon" aria-hidden="true">🌱</span>
+        <div class="progress-body">
+          <div class="progress-title"><span id="progress-title">모은 어휘 씨앗</span><span class="progress-count" id="total-count"></span></div>
+          <progress id="total-progress" aria-labelledby="progress-title"></progress>
+        </div>
+      </div>
+      <button type="button" class="secondary journal-toggle" id="open-journal">탐험 수첩</button>
+    </section>
+    <section aria-labelledby="trails-title">
+      <div class="trails-heading">
+        <h2 id="trails-title">어떤 숲길로 갈까요?</h2>
+        <p>숲길마다 표현 6개를 만나요.</p>
+      </div>
+      <div class="trail-grid" id="trails"></div>
+    </section>
+  </div>
+  <section class="inner" id="activity" aria-label="어휘 탐험 문제" hidden>
+    <button class="secondary back" id="activity-back" type="button">← 숲길 지도</button>
+    <div id="activity-content" class="activity-card"></div>
+  </section>
+  <section class="inner" id="journal" aria-labelledby="journal-title" hidden>
+    <button class="secondary back" id="journal-back" type="button">← 숲길 지도</button>
+    <div class="activity-card">
+      <h2 id="journal-title" tabindex="-1">🌱 탐험 수첩</h2>
+      <p>모은 어휘 씨앗을 눌러 뜻과 예문을 다시 읽어 봐요.</p>
+      <div id="journal-content"></div>
+    </div>
+  </section>
+</main>
+<script>
+"use strict";
+
+const trails = {
+  words: {
+    name: "단어 숲길", icon: "🌿", description: "글 속에서 낱말의 쓰임을 알아봐요.",
+    lessons: [
+      {
+        term: "관찰", meaning: "어떤 것을 주의 깊게 살펴보는 것.",
+        example: "돋보기로 나뭇잎의 잎맥을 관찰했다.",
+        before: "모리는 달팽이가 어디로 움직이는지 조용히 지켜보며 그 모습을 ", after: "했다.",
+        distractors: ["상상", "비교"]
+      },
+      {
+        term: "짐작", meaning: "확실하게 알지는 못하지만 여러 단서를 보고 미루어 생각하는 것.",
+        example: "발자국 크기를 보고 토끼가 지나갔으리라고 짐작했다.",
+        before: "모리는 어두운 구름이 몰려오는 것을 보고 곧 비가 올 것이라고 ", after: "했다.",
+        distractors: ["기록", "부탁"]
+      },
+      {
+        term: "흔적", meaning: "어떤 일이 있거나 누군가 지나간 뒤에 남은 자국이나 표시.",
+        example: "진흙길에 커다란 발자국이 남았다. 누군가 걸어간 흔적이었다.",
+        before: "다람쥐는 껍질만 남은 도토리를 보고, 누군가 도토리를 먹고 간 ", after: "을 찾았다고 생각했다.",
+        distractors: ["규칙", "약속"]
+      },
+      {
+        term: "보호", meaning: "다치거나 해를 입지 않도록 잘 돌보고 지키는 것.",
+        example: "아기 새를 보호하려고 둥지 가까이에 가지 않았다.",
+        before: "모리는 사람들이 어린 나무를 밟지 않도록 울타리를 만들어 나무를 ", after: "했다.",
+        distractors: ["관찰", "이동"]
+      },
+      {
+        term: "비교", meaning: "둘 이상의 것을 살펴보고 서로 닮은 점과 다른 점을 알아보는 것.",
+        example: "소나무 잎과 단풍나무 잎의 모양을 비교했다.",
+        before: "모리는 솔방울 두 개를 나란히 놓고 크기와 모양을 ", after: "했다.",
+        distractors: ["보호", "예측"]
+      },
+      {
+        term: "원인", meaning: "어떤 일이 일어나게 만든 까닭.",
+        example: "빗물이 고인 원인은 배수로를 낙엽이 막았기 때문이다.",
+        before: "어젯밤 비바람에 나뭇가지가 부러졌다. 나뭇가지가 부러진 ", after: "은 강한 바람이다.",
+        distractors: ["결과", "순서"]
+      }
+    ]
+  },
+  idioms: {
+    name: "사자성어 숲길", icon: "📜", description: "네 글자에 담긴 뜻을 찾아봐요.",
+    lessons: [
+      {
+        term: "일석이조", meaning: "한 가지 일을 해서 두 가지 좋은 결과를 얻는다는 뜻.",
+        example: "걸어서 도서관에 가니 운동도 하고 책도 빌려 일석이조였다.",
+        before: "모리는 산책하면서 떨어진 쓰레기를 주웠어요. 몸도 튼튼해지고 숲도 깨끗해졌지요. 이런 때에는 ", after: "라고 해요.",
+        distractors: ["우왕좌왕", "자업자득"]
+      },
+      {
+        term: "동문서답", meaning: "질문과는 관계없는 엉뚱한 대답을 한다는 뜻.",
+        example: "어디 가냐는 말에 ‘빵이 맛있어’라고 하니 동문서답이었다.",
+        before: "모리가 ‘도토리를 몇 개 찾았니?’라고 묻자 토끼는 ‘오늘은 바람이 시원해’라고 답했어요. 이런 때에는 ", after: "이라고 해요.",
+        distractors: ["일석이조", "유유상종"]
+      },
+      {
+        term: "우왕좌왕", meaning: "갈피를 잡지 못하고 이리저리 왔다 갔다 한다는 뜻.",
+        example: "갈림길에서 방향을 정하지 못해 우왕좌왕했다.",
+        before: "갑자기 소나기가 내리자 친구들은 어디로 피해야 할지 몰라 이쪽저쪽 뛰어다녔어요. 친구들은 ", after: "했어요.",
+        distractors: ["자업자득", "이심전심"]
+      },
+      {
+        term: "유유상종", meaning: "성격이나 관심사가 비슷한 사람들끼리 어울린다는 뜻.",
+        example: "곤충을 좋아하는 아이들이 금세 친구가 되니 유유상종이다.",
+        before: "별을 좋아하는 숲속 친구들은 밤마다 함께 별자리를 찾아요. 같은 것을 좋아하는 친구들이 자연스레 모였으니 ", after: "이네요.",
+        distractors: ["동문서답", "일석이조"]
+      },
+      {
+        term: "이심전심", meaning: "말로 설명하지 않아도 서로의 마음이 통한다는 뜻.",
+        example: "서로를 보자마자 같은 생각을 하고 있다는 걸 알아차리니 이심전심이었다.",
+        before: "추위에 떠는 아기 토끼를 보고 모리와 다람쥐는 동시에 자기 목도리를 풀었어요. 아무 말도 안 했는데 마음이 같았으니 ", after: "이네요.",
+        distractors: ["동문서답", "유유상종"]
+      },
+      {
+        term: "자업자득", meaning: "자기가 한 잘못 때문에 자기가 나쁜 결과를 겪는다는 뜻.",
+        example: "책을 아무 데나 두었다가 못 찾아서 숙제를 늦게 한 것은 자업자득이었다.",
+        before: "다람쥐는 간식 봉지를 닫지 않고 갔다가 눅눅해진 간식을 먹게 됐어요. 자기 행동 때문에 생긴 일이니 ", after: "이었어요.",
+        distractors: ["우왕좌왕", "이심전심"]
+      }
+    ]
+  },
+  sayings: {
+    name: "속담 숲길", icon: "🍄", description: "옛사람의 지혜를 오늘의 이야기에서 찾아봐요.",
+    lessons: [
+      {
+        term: "티끌 모아 태산", meaning: "아주 작은 것도 계속 모으면 아주 큰 것이 된다는 뜻.",
+        example: "매일 동전 한 개씩 모아 저금통을 가득 채웠다. 티끌 모아 태산이다.",
+        before: "토끼가 날마다 한 장씩 숲을 그렸어요. 몇 달이 지나니 그림책 한 권이 됐지요. 이럴 때 어울리는 속담은 ", after: "이에요.",
+        distractors: ["소 잃고 외양간 고친다", "세 살 버릇 여든까지 간다"]
+      },
+      {
+        term: "돌다리도 두들겨 보고 건너라", meaning: "안전해 보이거나 익숙한 일도 한 번 더 확인하고 조심하라는 뜻.",
+        example: "매일 지나는 길이라도 길을 건너기 전에 차가 오는지 살폈다.",
+        before: "모리는 탈 없이 건너던 다리도 비가 온 뒤에는 미끄럽지 않은지 살피고 건넜어요. 어울리는 속담은 ", after: "예요.",
+        distractors: ["가는 말이 고와야 오는 말이 곱다", "티끌 모아 태산"]
+      },
+      {
+        term: "가는 말이 고와야 오는 말이 곱다", meaning: "내가 상대에게 말을 따뜻하게 하면 상대도 나에게 좋게 대한다는 뜻.",
+        example: "친구에게 차분히 부탁하니 친구도 웃으며 대답했다.",
+        before: "모리가 ‘기다려 줘서 고마워!’라고 말하자 친구가 ‘괜찮아, 같이 가자!’라고 답했어요. 어울리는 속담은 ", after: "예요.",
+        distractors: ["돌다리도 두들겨 보고 건너라", "소 잃고 외양간 고친다"]
+      },
+      {
+        term: "백지장도 맞들면 낫다", meaning: "아주 쉬운 일이라도 여럿이 도우면 더 쉽다는 뜻.",
+        example: "책상 정리를 짝과 함께 하니 금방 끝났다.",
+        before: "모리가 색연필을 정리할 때 친구가 도와줬어요. 혼자서도 할 수 있는 일이었지만 함께하니 더 빨리 끝났어요. 어울리는 속담은 ", after: "예요.",
+        distractors: ["세 살 버릇 여든까지 간다", "가는 말이 고와야 오는 말이 곱다"]
+      },
+      {
+        term: "소 잃고 외양간 고친다", meaning: "일이 잘못된 뒤에야 뒤늦게 대비한다는 뜻.",
+        example: "물이 들어와 상자가 망가진 뒤에야 지붕의 구멍을 막았다.",
+        before: "바구니가 찢어진 걸 보고도 토끼는 그대로 두었어요. 사과를 모두 떨어뜨리고 나서야 찢어진 곳을 꿰맸어요. 어울리는 속담은 ", after: "예요.",
+        distractors: ["백지장도 맞들면 낫다", "티끌 모아 태산"]
+      },
+      {
+        term: "세 살 버릇 여든까지 간다", meaning: "어릴 때 생긴 버릇은 나이가 들어도 쉽게 바뀌지 않는다는 뜻.",
+        example: "어릴 때부터 책 읽기를 좋아하던 할머니는 지금도 매일 책을 읽으신다.",
+        before: "올빼미는 어렸을 때부터 물건을 쓰고 제자리에 놓았어요. 어른이 된 지금도 그 습관을 지켜요. 어울리는 속담은 ", after: "예요.",
+        distractors: ["소 잃고 외양간 고친다", "백지장도 맞들면 낫다"]
+      }
+    ]
+  }
+};
+
+const storageKey = "linkday-013-vocabulary-seeds";
+const allLessons = Object.values(trails).flatMap(trail => trail.lessons);
+const allTerms = new Set(allLessons.map(lesson => lesson.term));
+const seedTotal = allLessons.length;
+
+function loadSeeds() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey));
+    if (Array.isArray(saved)) return new Set(saved.filter(term => allTerms.has(term)));
+  } catch {
+    // The current tab can still keep progress if storage is unavailable.
+  }
+  return new Set();
+}
+
+const seeds = loadSeeds();
+const home = document.querySelector("#home");
+const activity = document.querySelector("#activity");
+const journal = document.querySelector("#journal");
+const activityContent = document.querySelector("#activity-content");
+const journalContent = document.querySelector("#journal-content");
+const trailGrid = document.querySelector("#trails");
+const journalButton = document.querySelector("#open-journal");
+let currentTrail;
+let lessonIndex = 0;
+let lastTrailKey;
+
+function growSeed(term) {
+  if (seeds.has(term)) return;
+  seeds.add(term);
+  try {
+    localStorage.setItem(storageKey, JSON.stringify([...seeds]));
+  } catch {
+    // Progress remains available for review during this visit.
+  }
+}
+
+function activateView(view, focusTarget) {
+  for (const section of [home, activity, journal]) section.hidden = section !== view;
+  window.scrollTo(0, 0);
+  focusTarget.focus({ preventScroll: true });
+}
+
+function drawHome() {
+  const progress = document.querySelector("#total-progress");
+  progress.max = seedTotal;
+  progress.value = seeds.size;
+  document.querySelector("#total-count").textContent = `${seeds.size} / ${seedTotal}개`;
+
+  const buttons = Object.entries(trails).map(([key, trail]) => {
+    const count = trail.lessons.filter(lesson => seeds.has(lesson.term)).length;
+    const button = document.createElement("button");
+    button.className = "trail";
+    button.type = "button";
+    button.dataset.type = key;
+    button.innerHTML = `
+      <span class="trail-top"><span class="trail-icon" aria-hidden="true">${trail.icon}</span>
+        <span class="trail-count">${count} / ${trail.lessons.length}개 ${count === trail.lessons.length ? "발견 완료" : "발견"}</span>
+      </span>
+      <span class="trail-name">${trail.name}</span>
+      <span class="trail-description">${trail.description}</span>
+      <span class="trail-action"><span>${count === trail.lessons.length ? "다시 탐험하기" : "숲길 들어가기"}</span><span aria-hidden="true">↗</span></span>`;
+    button.addEventListener("click", () => startTrail(key));
+    return button;
+  });
+  trailGrid.replaceChildren(...buttons);
+}
+
+function goHome(fromJournal = false) {
+  drawHome();
+  const target = fromJournal ? journalButton : trailGrid.querySelector(`[data-type="${lastTrailKey}"]`);
+  activateView(home, target || document.querySelector("#start"));
+}
+
+function startTrail(key) {
+  currentTrail = trails[key];
+  lastTrailKey = key;
+  lessonIndex = 0;
+  drawLesson();
+}
+
+function activityFrame(guide, content) {
+  activityContent.classList.remove("completion");
+  activityContent.innerHTML = `
+    <div class="activity-head"><p class="activity-trail">${currentTrail.icon} ${currentTrail.name}</p>
+      <p class="activity-step">${lessonIndex + 1} / ${currentTrail.lessons.length}</p>
+    </div>
+    <progress value="${lessonIndex + 1}" max="${currentTrail.lessons.length}" aria-label="숲길 단계"></progress>
+    <div class="guide"><span class="guide-icon" aria-hidden="true">🦊</span><p>${guide}</p></div>
+    ${content}`;
+  activateView(activity, activityContent.querySelector("h2"));
+}
+
+function drawLesson() {
+  const lesson = currentTrail.lessons[lessonIndex];
+  activityFrame("모리와 함께 표현의 뜻을 읽어 봐요.", `
+    <h2 tabindex="-1">${lesson.term}</h2>
+    <p class="definition">${lesson.meaning}</p>
+    <p class="example"><strong>예문</strong> ${lesson.example}</p>
+    <button class="primary" id="show-quiz" type="button">이야기 퀴즈 풀기 <span aria-hidden="true">→</span></button>`);
+  document.querySelector("#show-quiz").addEventListener("click", () => drawQuiz(lesson));
+}
+
+function drawQuiz(lesson) {
+  activityFrame("이야기를 읽고 빈칸에 들어갈 표현을 골라 봐요.", `
+    <h2 tabindex="-1">이야기 퀴즈</h2>
+    <p class="story">${lesson.before}<mark>빈칸</mark>${lesson.after}</p>
+    <div class="answers" aria-label="보기"></div>
+    <p class="feedback" role="status"></p>
+    <button class="primary" id="next-lesson" type="button" hidden>
+      ${lessonIndex + 1 === currentTrail.lessons.length ? "탐험 결과 보기" : "다음 표현"} <span aria-hidden="true">→</span>
+    </button>`);
+
+  const choices = [...lesson.distractors];
+  const rightPosition = Math.floor(Math.random() * (choices.length + 1));
+  choices.splice(rightPosition, 0, lesson.term);
+  const answers = activityContent.querySelector(".answers");
+  const feedback = activityContent.querySelector(".feedback");
+  const next = document.querySelector("#next-lesson");
+
+  choices.forEach((choice, index) => {
+    const option = document.createElement("button");
+    option.className = "answer";
+    option.type = "button";
+    option.innerHTML = `<span class="answer-number" aria-hidden="true">${index + 1}</span><span>${choice}</span>`;
+    option.addEventListener("click", () => {
+      if (option.getAttribute("aria-disabled") === "true") return;
+      if (choice === lesson.term) {
+        growSeed(lesson.term);
+        option.classList.add("correct");
+        for (const answer of answers.children) {
+          answer.setAttribute("aria-disabled", "true");
+          answer.tabIndex = -1;
+        }
+        feedback.dataset.result = "correct";
+        feedback.textContent = `맞았어요! ‘${lesson.term}’은 ${lesson.meaning} 🌱`;
+        next.hidden = false;
+        next.focus({ preventScroll: true });
+      } else {
+        option.classList.add("incorrect");
+        option.setAttribute("aria-disabled", "true");
+        feedback.dataset.result = "incorrect";
+        feedback.textContent = `다시 도전! ${lesson.meaning} 어떤 표현인지 생각해 봐요.`;
+      }
+    });
+    answers.append(option);
+  });
+  next.addEventListener("click", () => {
+    lessonIndex++;
+    if (lessonIndex === currentTrail.lessons.length) drawCompletion();
+    else drawLesson();
+  });
+}
+
+function drawCompletion() {
+  activityContent.classList.add("completion");
+  const allDone = seeds.size === seedTotal;
+  activityContent.innerHTML = `
+    <span class="completion-icon" aria-hidden="true">${allDone ? "🌳" : "🌱"}</span>
+    <h2 tabindex="-1">${allDone ? "어휘의 숲 탐험 완료!" : `${currentTrail.name} 탐험 완료!`}</h2>
+    <p>${allDone ? `표현 ${seedTotal}개의 씨앗을 모두 모았어요.` : `이 숲길에서 표현 ${currentTrail.lessons.length}개의 씨앗을 모았어요.`}</p>
+    <div class="completion-actions">
+      <button class="primary" id="finish-home" type="button">숲길 지도로</button>
+      <button class="secondary" id="finish-journal" type="button">탐험 수첩 보기</button>
+    </div>`;
+  document.querySelector("#finish-home").addEventListener("click", () => goHome());
+  document.querySelector("#finish-journal").addEventListener("click", openJournal);
+  activateView(activity, activityContent.querySelector("h2"));
+}
+
+function openJournal() {
+  journalContent.innerHTML = Object.values(trails).map(trail => {
+    const collected = trail.lessons.filter(lesson => seeds.has(lesson.term));
+    const entries = collected.map(lesson => `
+      <details>
+        <summary>${lesson.term}</summary>
+        <p>${lesson.meaning}</p>
+        <p><strong>예문</strong> ${lesson.example}</p>
+      </details>`).join("");
+    return `<section class="journal-section">
+      <h3>${trail.icon} ${trail.name} · ${collected.length} / ${trail.lessons.length}</h3>
+      ${entries || "<p>숲길에 들어가 첫 씨앗을 찾아봐요.</p>"}
+    </section>`;
+  }).join("");
+  activateView(journal, document.querySelector("#journal-title"));
+}
+
+document.querySelector("#start").addEventListener("click", () => {
+  const unfinished = [...trailGrid.children].find(button =>
+    trails[button.dataset.type].lessons.some(lesson => !seeds.has(lesson.term))
+  );
+  const target = unfinished || trailGrid.firstElementChild;
+  target.focus();
+  target.scrollIntoView({ block: "nearest" });
+});
+document.querySelector("#activity-back").addEventListener("click", () => goHome());
+document.querySelector("#journal-back").addEventListener("click", () => goHome(true));
+journalButton.addEventListener("click", openJournal);
+drawHome();
+</script>
+</body>
+</html>
